@@ -1,0 +1,37 @@
+@import 'variables';
+@import 'placeholders';
+
+#filler {
+    height: $headerHeight;
+    display: none;
+}
+
+#header {
+    background-color: $blackBackground;
+    height: $headerHeight;
+    @extend %center-content;
+    left: 0;
+    top: 0;
+    position: relative;
+    width: 100%;
+    z-index: 100;
+}
+
+#header-links {
+    max-width: 1200px;
+    width: 100%;
+    text-align: left;
+}
+
+.header-link {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    color: white;
+    display: inline-block;
+    transition: color 0.5s;
+    @extend %link;
+}
+
+.header-link:hover, .selected {
+    color: $lightBlue;
+}
