@@ -1,3 +1,19 @@
+@import 'variables';
+
 .page {
-    background-color: rgb(245, 245, 245);
+    background-color: $extremeLightGray;
+}
+
+#projects-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.project {
+    margin: 1rem;
+    width: 10rem;
+    height: 10rem;
+    background-color: $lightGray;
 }

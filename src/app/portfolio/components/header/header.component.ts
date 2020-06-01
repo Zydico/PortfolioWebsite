@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ScrollHandlerService } from '../../services/scroll-handler.service';
 
 @Component({
@@ -6,14 +6,11 @@ import { ScrollHandlerService } from '../../services/scroll-handler.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit {
 
   constructor(public scrollHandlerService : ScrollHandlerService) { }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
     this.scrollHandlerService.updateScroll();
   }
 

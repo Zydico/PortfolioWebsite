@@ -1,7 +1,8 @@
 @import 'placeholders';
+@import 'variables';
 
 .page {
-    background-color: rgb(245, 245, 245);
+    background-color: $extremeLightGray;
 }
 
 #description {

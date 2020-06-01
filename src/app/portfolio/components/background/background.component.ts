@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FileHandlerService } from 'src/app/portfolio/services/file-handler.service';
 import { Star } from './star';
 import { Line } from './line';
@@ -9,7 +9,7 @@ import { LoaderService } from '../../services/loader.service';
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.scss']
 })
-export class BackgroundComponent implements OnInit, AfterViewInit {
+export class BackgroundComponent implements OnInit {
 
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
@@ -33,9 +33,6 @@ export class BackgroundComponent implements OnInit, AfterViewInit {
   constructor(private fileHandlerService: FileHandlerService, private loaderService: LoaderService, private zone: NgZone) { }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
     this.canvas = <HTMLCanvasElement> document.getElementById('background');
     this.ctx = this.canvas.getContext('2d');
     this.fileHandlerService.readFile('app/portfolio/components/background/stars.csv').subscribe((lines: string[]) => {

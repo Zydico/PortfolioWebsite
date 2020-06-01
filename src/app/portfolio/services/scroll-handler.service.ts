@@ -51,6 +51,14 @@ export class ScrollHandlerService {
     this.checkClasses('transparent-right');
     this.checkClasses('transparent-left');
     this.checkClasses('transparent-top');
+    let bars = document.getElementById('bar-container');
+    if (bars && bars.offsetTop <= window.scrollY + 500) {
+      let list = document.getElementsByClassName('minimized');
+      for (let i = 0; i < list.length; i++) {
+        let element = (<HTMLElement> list.item(i));
+        setInterval(() => { element.classList.remove('minimized') }, i * 150);
+      }
+    }
   }
 
   private checkClasses(className : string): void {
