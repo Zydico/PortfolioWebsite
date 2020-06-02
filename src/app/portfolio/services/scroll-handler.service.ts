@@ -56,7 +56,7 @@ export class ScrollHandlerService {
       let list = document.getElementsByClassName('minimized');
       for (let i = 0; i < list.length; i++) {
         let element = (<HTMLElement> list.item(i));
-        setInterval(() => { element.classList.remove('minimized') }, i * 150);
+        setTimeout(() => { element.classList.remove('minimized') }, i * 150);
       }
     }
   }

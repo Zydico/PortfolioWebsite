@@ -40,7 +40,7 @@ export class BackgroundComponent implements OnInit {
       this.setCanvas();
       this.addMouseListener();
       window.requestAnimationFrame(() => this.loop());
-      setInterval(() => {this.loaderService.hideLoader()}, 1000);
+      setTimeout(() => {this.loaderService.hideLoader()}, 1000);
     })
   }
 

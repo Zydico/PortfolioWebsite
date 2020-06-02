@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "src/assets",
-              "src/app"
+              "src/app",
+              "src/.htaccess"
             ],
             "styles": [
               "src/styles/main.scss"
@@ -93,7 +94,8 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/assets"
+              "src/assets",
+              "src/.htaccess"
             ],
             "styles": [
               "src/styles/main.scss"
