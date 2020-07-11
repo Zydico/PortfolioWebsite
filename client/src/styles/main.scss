@@ -1,0 +1,71 @@
+@import 'variables';
+@import 'functions';
+@import 'placeholders';
+@import 'mixins';
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.page {
+    width: 100vw;
+    color: $darkGray;
+    @extend %center-content;
+    padding-top: $headerHeight;
+    padding-bottom: $headerHeight;
+}
+
+.main-container {
+    max-width: 90%;
+    width: 60rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 3rem;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 0.2rem;
+    background-color: $darkGray;
+    margin: 0.3rem auto 0.5rem auto;
+}
+
+.transparent-animated {
+    opacity: 1.0;
+    position: relative;
+    left: 0;
+    top: 0;
+    transition: left 1.5s, top 1.5s, opacity 1.5s;
+}
+
+.transparent-right {
+    left: 5rem;
+    opacity: 0.0;
+}
+
+.transparent-left {
+    left: -5rem;
+    opacity: 0.0;
+}
+
+.transparent-top {
+    top: -2rem;
+    opacity: 0.0;
+}

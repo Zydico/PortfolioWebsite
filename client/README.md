@@ -1,0 +1,1 @@
+This is the portfolio website that I made using Angular 9. As of right now, there is no need for a backend, but if I do need them, this will probably turn into a MEAN stack application, with Firebase to possibly handle logins if I decide not to bother with doing encryption myself. 

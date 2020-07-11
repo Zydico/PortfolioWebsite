@@ -1,0 +1,29 @@
+<div id="header">
+    <div id="sort-button" [ngClass]="{'disabled': !enabled}" (click)="sort()">Sort</div>
+    <div class="slider-container">
+        <div class="slider-label"># of elements</div>
+        <input [disabled]="!enabled" type="range" min="10" max="100" value="20" id="slider" (input)="sliderChanged($event)"> 
+    </div>
+    <div class="slider-container">
+        <div class="slider-label">sort speed</div>
+        <input type="range" min="5" max="500" value="100" id="slider" (input)="speedChanged($event)"> 
+    </div>
+    <div id="reset-button" [ngClass]="{'disabled': !enabled}" (click)="generateNewGraph()">Reset</div>
+    <div id="mode-container">
+        <div id="sort-mode-button" (click)="toggleVisibility()">{{ visible ? 'Hide Modes' : 'Show Modes' }}</div>
+        <div id="collapse-container" *ngIf="visible">
+            <div class="sort-mode selected" (click)="changeMode('selection', $event)">Selection</div>
+            <div class="sort-mode" (click)="changeMode('bubble', $event)">Bubble</div>
+            <div class="sort-mode" (click)="changeMode('insertion', $event)">Insertion</div>
+            <div class="sort-mode" (click)="changeMode('merge', $event)">Merge</div>
+            <div class="sort-mode" (click)="changeMode('quick', $event)">Quick</div>
+            <div class="sort-mode" (click)="changeMode('heap', $event)">Heap</div>
+            <div class="sort-mode" (click)="changeMode('counting', $event)">Counting</div>
+            <div class="sort-mode" (click)="changeMode('radix', $event)">Radix</div>
+            <div class="sort-mode" (click)="changeMode('bucket', $event)">Bucket</div>
+        </div>
+    </div>
+</div>
+<div id="graph-container">
+    <canvas id="canvas"></canvas>
+</div>
