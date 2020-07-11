@@ -6,7 +6,7 @@
     </div>
     <div class="slider-container">
         <div class="slider-label">sort speed</div>
-        <input type="range" min="5" max="500" value="100" id="slider" (input)="speedChanged($event)"> 
+        <input type="range" min="5" max="1000" value="100" id="slider" (input)="speedChanged($event)"> 
     </div>
     <div id="reset-button" [ngClass]="{'disabled': !enabled}" (click)="generateNewGraph()">Reset</div>
     <div id="mode-container">
@@ -25,5 +25,6 @@
     </div>
 </div>
 <div id="graph-container">
+    <div id="back-button" (click)="goBack()">Back</div>
     <canvas id="canvas"></canvas>
 </div>

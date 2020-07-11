@@ -1,4 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoaderService } from '../shared/services/loader/loader.service';
 
 @Component({
   selector: 'app-sort-algorithm-visualizer',
@@ -20,7 +22,7 @@ export class SortAlgorithmVisualizerComponent implements OnInit {
   private delaySpeed: number;
   private speedVariable: number = 100;
 
-  constructor(private zone: NgZone) {
+  constructor(private zone: NgZone, private router: Router, private loader: LoaderService) {
   }
 
   ngOnInit(): void {
@@ -54,10 +56,19 @@ export class SortAlgorithmVisualizerComponent implements OnInit {
     let target = <HTMLElement> (event.target || event.srcElement);
     target.classList.add('selected');
     this.mode = newMode;
+    this.generateNewGraph();
   }
 
   adjustSpeed(): void {
     this.delaySpeed = Math.ceil(5000/this.speedVariable);
+  }
+
+  goBack(): void {
+    this.loader.showLoader();
+    setTimeout(() => {
+      this.router.navigate(['portfolio']);
+      this.loader.hideLoader();
+    }, 1200);
   }
 
   generateNewGraph(): void {
@@ -122,7 +133,78 @@ export class SortAlgorithmVisualizerComponent implements OnInit {
     this.enabled = false;
     if (this.mode === 'selection') {
       this.selectionSort(0);
+    } else if (this.mode === 'bubble') {
+      this.bubbleSort(this.list.length);
+    } else if (this.mode === 'insertion') {
+      this.insertionSort();
     }
+  }
+
+  insertionSort = async() => {
+    let length = this.list.length;
+    for (let i = 0; i < length; i++) {
+      let j = i-1;
+      this.list[i].status = 'searching';
+      while (j >= 0) {
+        this.list[j].status = 'searching';
+        this.list[j+1].status = 'searching';
+        this.draw();
+        await this.delay(this.delaySpeed);
+        if (this.list[j].height > this.list[j+1].height) {
+          this.list[j+1].status = 'sorting';
+          this.list[j].status = 'sorting';
+          this.draw();
+          await this.delay(this.delaySpeed);
+          let temp = this.list[j+1];
+          this.list[j+1] = this.list[j];
+          this.list[j] = temp;
+          this.draw();
+          await this.delay(this.delaySpeed);
+          this.list[j].status = 'sorted';
+          this.list[j+1].status = 'sorted';
+          j--;
+          this.draw();
+          await this.delay(this.delaySpeed);
+        } else {
+          this.list[j].status = 'sorted';
+          this.list[j+1].status = 'sorted';
+          this.draw();
+          await this.delay(this.delaySpeed);
+          break;
+        }
+      }
+      this.draw();
+      await this.delay(this.delaySpeed);
+    }
+    this.enabled = true;
+  }
+
+  bubbleSort = async(length: number) => {
+    if (length === 1){
+      this.enabled = true;
+    }
+    for (let i = 0; i < length-1; i++) {
+      this.list[i].status = 'searching';
+      this.list[i+1].status = 'searching';
+      this.draw();
+      await this.delay(this.delaySpeed);
+      if (this.list[i].height > this.list[i+1].height) {
+        this.list[i].status = 'sorting';
+        this.list[i+1].status = 'sorting';
+        this.draw();
+        await this.delay(this.delaySpeed);
+        let temp = this.list[i];
+        this.list[i] = this.list[i+1];
+        this.list[i+1] = temp;
+        this.draw();
+        await this.delay(this.delaySpeed);
+      }
+      this.list[i].status = 'unsorted';
+    }
+    this.list[length-1].status = 'sorted';
+    this.draw();
+    await this.delay(this.delaySpeed);
+    this.bubbleSort(length-1);
   }
 
   selectionSort = async(i: number) => {
@@ -163,7 +245,6 @@ export class SortAlgorithmVisualizerComponent implements OnInit {
     } else {
       this.enabled = true;
     }
-    //this.selectionSort(0);
   }
 
 }
