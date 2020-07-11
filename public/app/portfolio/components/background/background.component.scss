@@ -1,0 +1,7 @@
+@import 'placeholders';
+
+#background {
+    @extend %full-screen;
+    z-index: -1;
+    background-color: #041d55;
+}
