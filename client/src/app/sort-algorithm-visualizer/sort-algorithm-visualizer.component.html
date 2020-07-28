@@ -15,16 +15,18 @@
             <div class="sort-mode selected" (click)="changeMode('selection', $event)">Selection</div>
             <div class="sort-mode" (click)="changeMode('bubble', $event)">Bubble</div>
             <div class="sort-mode" (click)="changeMode('insertion', $event)">Insertion</div>
-            <div class="sort-mode" (click)="changeMode('merge', $event)">Merge</div>
-            <div class="sort-mode" (click)="changeMode('quick', $event)">Quick</div>
-            <div class="sort-mode" (click)="changeMode('heap', $event)">Heap</div>
-            <div class="sort-mode" (click)="changeMode('counting', $event)">Counting</div>
-            <div class="sort-mode" (click)="changeMode('radix', $event)">Radix</div>
-            <div class="sort-mode" (click)="changeMode('bucket', $event)">Bucket</div>
+            <div class="sort-mode disabled-sort">Merge</div>
+            <div class="sort-mode disabled-sort">Quick</div>
+            <div class="sort-mode disabled-sort">Heap</div>
+            <div class="sort-mode disabled-sort">Counting</div>
+            <div class="sort-mode disabled-sort">Radix</div>
+            <div class="sort-mode disabled-sort">Bucket</div>
         </div>
     </div>
 </div>
 <div id="graph-container">
     <div id="back-button" (click)="goBack()">Back</div>
+    <input type="checkbox" id="iterations-only" name="iterations-only" [(ngModel)]="iterationsOnly">
+    <label for="iterations-only">Iterations Only</label>
     <canvas id="canvas"></canvas>
 </div>

@@ -1,0 +1,6 @@
+<div class="page" id="projects-page">
+    <div class="main-container">
+        <div id="back-button" (click)="goBack()" *ngIf="getRoute() !== '/portfolio'">Back</div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

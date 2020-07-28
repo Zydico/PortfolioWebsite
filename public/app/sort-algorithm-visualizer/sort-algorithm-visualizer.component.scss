@@ -1,0 +1,150 @@
+#header {
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.877);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#sort-button {
+    background-color: rgb(18, 126, 18);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    margin-left: 1rem;
+    user-select: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#sort-button:hover, #sort-mode-button:hover {
+    background-color: rgb(55, 170, 55);
+}
+
+#reset-button {
+    background-color: rgb(182, 59, 59);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    margin-left: 1rem;
+    user-select: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#reset-button:hover {
+    background-color: rgb(204, 120, 120);
+}
+
+.sort-mode {
+    width: 5rem;
+    text-align: center;
+    margin-left: 1rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+.sort-mode:hover, .selected {
+    text-decoration: underline;
+}
+
+.slider-container {
+    margin-left: 1rem;
+    padding-top: 1rem;
+    position: relative;
+}
+
+.slider-label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    top: 0.1rem;
+    left: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+#mode-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#sort-mode-button {
+    padding: 0.25rem 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.5rem;
+    background-color: rgb(18, 126, 18);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+#collapse-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#graph-container {
+    background-color: rgb(231, 231, 231);
+    padding: 1rem;
+}
+
+canvas {
+    background-color: white;
+    width: 100%;
+}
+
+.disabled {
+    background-color: rgb(146, 146, 146) !important;
+    cursor: default !important;
+}
+
+@media only screen and (max-width: 900px) {
+    #mode-container {
+        background-color: rgb(73, 73, 73);
+        width: 100vw;
+        margin-top: 0;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    #sort-mode-button {
+        display: block;
+    }
+
+    .sort-mode {
+        width: 100%;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sort-mode:hover {
+        background-color: rgb(139, 139, 139);
+    }
+
+    .selected {
+        background-color: rgb(117, 117, 117) !important;
+    }
+}
+
+#back-button {
+    background-color: rgb(59, 59, 59);
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+#back-button:hover {
+    background-color: rgb(107, 107, 107);
+}

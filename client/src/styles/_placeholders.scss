@@ -17,3 +17,17 @@
     cursor: pointer;
     user-select: none;
 }
+
+%back-button {
+    background-color: rgb(59, 59, 59);
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+%back-button-hover {
+    background-color: rgb(107, 107, 107);
+}
