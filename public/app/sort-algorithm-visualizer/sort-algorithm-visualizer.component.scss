@@ -1,3 +1,5 @@
+@import 'placeholders';
+
 #header {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.877);
@@ -136,15 +138,22 @@ canvas {
 }
 
 #back-button {
-    background-color: rgb(59, 59, 59);
-    border-radius: 0.25rem;
-    padding: 0.25rem 0.5rem;
-    display: inline-block;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    user-select: none;
+    @extend %back-button;
 }
 
 #back-button:hover {
-    background-color: rgb(107, 107, 107);
+    @extend %back-button-hover;
+}
+
+#iterations-only {
+    margin-left: 1rem;
+}
+
+label {
+    margin-left: 0.25rem;
+    color: rgb(27, 27, 27);
+}
+
+.disabled-sort {
+    color: rgb(87, 87, 87) !important;
 }

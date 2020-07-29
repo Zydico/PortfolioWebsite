@@ -16,10 +16,22 @@
             <input type="checkbox" id="beast-tribes" #beasttribes>
             <label for="beast-tribes" [ngClass]="{'done' : beasttribes.checked}">Beast Tribes</label>
         </div>
+    </div>
+    <div class="timer">GC Turn in resets in: <span>{{dailyGCTimer.hours}} Hours and {{dailyGCTimer.minutes}} Minutes</span></div>
+    <div class="checkbox-container">
         <div class="item">
             <input type="checkbox" id="gc-turnins" #gcturnins>
             <label for="gc-turnins" [ngClass]="{'done' : gcturnins.checked}">GC Turn-ins</label>
         </div>
+    </div>
+    <div class="header">Every 18 Hours</div>
+    <div class="item">
+        <input type="checkbox" id="map" #map>
+        <label for="map" [ngClass]="{'done' : map.checked}">Treasure Map</label>
+    </div>
+    <div class="item">
+        <input type="checkbox" id="squadron" #squadron>
+        <label for="squadron" [ngClass]="{'done' : squadron.checked}">GC Squadron</label>
     </div>
     <div class="header">Weekly</div>
     <div class="timer">Weekly resets in: <span>{{weeklyTimer.days}} Days, {{weeklyTimer.hours}} Hours, and {{weeklyTimer.minutes}} Minutes</span></div>
@@ -51,6 +63,10 @@
         <div class="item">
             <input type="checkbox" id="masked-carnivale" #maskedcarnivale>
             <label for="masked-carnivale" [ngClass]="{'done' : maskedcarnivale.checked}">Masked Carnivale</label>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="doman-enclave" #domanenclave>
+            <label for="doman-enclave" [ngClass]="{'done' : domanenclave.checked}">Doman Enclave</label>
         </div>
     </div>
 </div>

@@ -14,6 +14,10 @@ export class FfxivChecklistComponent implements OnInit {
     hours: '0',
     minutes: '0',
   }
+  dailyGCTimer = {
+    hours: '0',
+    minutes: '0',
+  }
   weeklyTimer = {
     days: '0',
     hours: '0',
@@ -32,12 +36,19 @@ export class FfxivChecklistComponent implements OnInit {
     let dailyReset = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 15, 0, 0);
     dailyReset.setDate(dailyReset.getDate() + 1);
     let difference = dailyReset.getTime() - nowUTC.getTime();
-    this.dailyTimer.hours = Math.floor((difference / (1000 * 60 * 60)) % 24).toString();
+    this.dailyTimer.hours = this.convertTime(Math.floor((difference / (1000 * 60 * 60)) % 24));
     this.dailyTimer.minutes = this.convertTime(Math.floor((difference / (1000 * 60)) % 60));
+    
+    let dailyGCReset = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 20, 0, 0);
+    dailyGCReset.setDate(dailyReset.getDate() + 1);
+    difference = dailyGCReset.getTime() - nowUTC.getTime();
+    this.dailyGCTimer.hours = this.convertTime(Math.floor((difference / (1000 * 60 * 60)) % 24));
+    this.dailyGCTimer.minutes = this.convertTime(Math.floor((difference / (1000 * 60)) % 60));
 
     let weeklyReset = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + (7 - now.getUTCDay()) % 7 + 2, 8, 0, 0);
     difference = weeklyReset.getTime() - nowUTC.getTime();
-    this.weeklyTimer.hours = Math.floor((difference / (1000 * 60 * 60))).toString();
+    this.weeklyTimer.days = Math.floor((difference / (1000 * 60 * 60 * 24))).toString();
+    this.weeklyTimer.hours = this.convertTime(Math.floor((difference / (1000 * 60 * 60)) % 24));
     this.weeklyTimer.minutes = this.convertTime(Math.floor((difference / (1000 * 60)) % 60));
   }
 
