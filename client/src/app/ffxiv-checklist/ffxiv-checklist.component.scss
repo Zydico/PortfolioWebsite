@@ -18,6 +18,13 @@
     top: 0.5rem;
 }
 
+#reset-button {
+    @extend %back-button;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
 #back-button:hover {
     background-color: rgb(107, 107, 107);
 }

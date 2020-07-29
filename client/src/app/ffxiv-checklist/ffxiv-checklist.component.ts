@@ -68,4 +68,13 @@ export class FfxivChecklistComponent implements OnInit {
     }, 1200);
   }
 
+  resetDaily(): void {
+    (<HTMLInputElement> document.getElementById('roulettes')).checked = false;
+    (<HTMLInputElement> document.getElementById('mini-cactpot')).checked = false;
+    (<HTMLInputElement> document.getElementById('beast-tribes')).checked = false;
+    (<HTMLInputElement> document.getElementById('gc-turnins')).checked = false;
+    (<HTMLInputElement> document.getElementById('map')).checked = false;
+    (<HTMLInputElement> document.getElementById('squadron')).checked = false;
+  }
+
 }
