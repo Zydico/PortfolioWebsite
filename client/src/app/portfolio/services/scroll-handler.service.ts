@@ -34,7 +34,7 @@ export class ScrollHandlerService {
     this.isOnContact = this.isOnPage('contact');
     let aboutPage = document.getElementById('about-page');
     let header = document.getElementById('header');
-    if (window.scrollY < aboutPage.offsetTop) {
+    if (window && aboutPage && (window.scrollY < aboutPage.offsetTop)) {
       this.isOnTitle = true;
       if (window.scrollY + header.offsetHeight > aboutPage.offsetTop) {
         this.isLocked = true;

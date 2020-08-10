@@ -137,8 +137,6 @@ export class FfxivChecklistComponent implements OnInit {
     }
 
     let ffxivWeeklyReset = new Date(this.getCookie('ffxiv-weeklyReset'));
-    console.log('NOW ' + nowUTC);
-    console.log('WEEKLY ' + weeklyReset);
     if (!ffxivWeeklyReset || (ffxivWeeklyReset && nowUTC > ffxivWeeklyReset)) {
       this.setCookie('ffxiv-weeklyReset', weeklyReset, 7);
       raids.checked = false;
@@ -162,25 +160,27 @@ export class FfxivChecklistComponent implements OnInit {
       squadron.checked = false;
     }
 
-    this.setCookie('ffxiv-roulettes', roulettes.checked, 7);
-    this.setCookie('ffxiv-minicactpot', minicactpot.checked, 7);
-    this.setCookie('ffxiv-beasttribes', beasttribes.checked, 7);
-    this.setCookie('ffxiv-gcturnins', gcturnins.checked, 7);
-    this.setCookie('ffxiv-map', map.checked, 7);
-    this.setCookie('ffxiv-squadron', squadron.checked, 7);
-    this.setCookie('ffxiv-raids', raids.checked, 7);
-    this.setCookie('ffxiv-tomestones', tomestones.checked, 7);
-    this.setCookie('ffxiv-customdeliveries', customdeliveries.checked, 7);
-    this.setCookie('ffxiv-jumbocactpot', jumbocactpot.checked, 7);
-    this.setCookie('ffxiv-wondroustails', wondroustails.checked, 7);
-    this.setCookie('ffxiv-fashionreport', fashionreport.checked, 7);
-    this.setCookie('ffxiv-maskedcarnivale', maskedcarnivale.checked, 7);
-    this.setCookie('ffxiv-domanenclave', domanenclave.checked, 7);
-    this.setCookie('ffxiv-fauxhollows', fauxhollows.checked, 7);
-    this.setCookie('ffxiv-allianceraid', allianceraid.checked, 7);
-
-    this.setCookie('ffxiv-treasuremaptimer', this.manualTimers.treasureMapTimer, 7);
-    this.setCookie('ffxiv-squadrontimer', this.manualTimers.gcSquadronTimer, 7);
+    if (roulettes) {
+      this.setCookie('ffxiv-roulettes', roulettes.checked, 7);
+      this.setCookie('ffxiv-minicactpot', minicactpot.checked, 7);
+      this.setCookie('ffxiv-beasttribes', beasttribes.checked, 7);
+      this.setCookie('ffxiv-gcturnins', gcturnins.checked, 7);
+      this.setCookie('ffxiv-map', map.checked, 7);
+      this.setCookie('ffxiv-squadron', squadron.checked, 7);
+      this.setCookie('ffxiv-raids', raids.checked, 7);
+      this.setCookie('ffxiv-tomestones', tomestones.checked, 7);
+      this.setCookie('ffxiv-customdeliveries', customdeliveries.checked, 7);
+      this.setCookie('ffxiv-jumbocactpot', jumbocactpot.checked, 7);
+      this.setCookie('ffxiv-wondroustails', wondroustails.checked, 7);
+      this.setCookie('ffxiv-fashionreport', fashionreport.checked, 7);
+      this.setCookie('ffxiv-maskedcarnivale', maskedcarnivale.checked, 7);
+      this.setCookie('ffxiv-domanenclave', domanenclave.checked, 7);
+      this.setCookie('ffxiv-fauxhollows', fauxhollows.checked, 7);
+      this.setCookie('ffxiv-allianceraid', allianceraid.checked, 7);
+  
+      this.setCookie('ffxiv-treasuremaptimer', this.manualTimers.treasureMapTimer, 7);
+      this.setCookie('ffxiv-squadrontimer', this.manualTimers.gcSquadronTimer, 7);
+    }
   }
 
   setCookie(cname, cvalue, exdays): void {

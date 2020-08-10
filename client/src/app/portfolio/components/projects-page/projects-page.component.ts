@@ -19,18 +19,24 @@ export class ProjectsPageComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     let projects = document.getElementsByClassName('project');
     for (let i = 0; i < projects.length; i++) {
-      let blur = <HTMLElement> projects[0].getElementsByClassName('blur')[0];
-      let svg = <HTMLElement> projects[0].getElementsByClassName('project-description-svg')[0];
-      let description = <HTMLElement> projects[0].getElementsByClassName('project-description')[0];
-      let background = <HTMLElement> projects[0].getElementsByClassName('project-description-background')[0];
-      blur.addEventListener('click', () => { this.showProject(description) });
-      svg.addEventListener('click', () => { this.hideProject(description) });
-      background.addEventListener('click', () => { this.hideProject(description) });
+      let blur = <HTMLElement> projects[i].getElementsByClassName('blur')[0];
+      let svg = <HTMLElement> projects[i].getElementsByClassName('project-description-svg')[0];
+      let description = <HTMLElement> projects[i].getElementsByClassName('project-description')[0];
+      let background = <HTMLElement> projects[i].getElementsByClassName('project-description-background')[0];
+      if (blur) {
+        blur.addEventListener('click', () => { this.showProject(description) });
+      }
+      if (svg) {
+        svg.addEventListener('click', () => { this.hideProject(description) });
+      }
+      if (background) {
+        background.addEventListener('click', () => { this.hideProject(description) });
+      }
     }
   }
 
   showProject(target: HTMLElement): void {
-    if (this.inAnimation) return;
+    if (this.inAnimation || !target) return;
     this.inAnimation = true;
     target.style.display = 'flex';
     setTimeout(() => {
