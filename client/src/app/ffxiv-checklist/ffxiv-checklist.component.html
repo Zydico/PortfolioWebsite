@@ -1,6 +1,5 @@
 <div id="background"></div>
 <div id="back-button" (click)="goBack()">Back</div>
-<div id="reset-button" (click)="resetDaily()">Reset Dailies</div>
 <div class="container">
     <div class="header">Daily</div>
     <div class="timer">Daily resets in: <span>{{dailyTimer.hours}} Hours and {{dailyTimer.minutes}} Minutes</span></div>
@@ -27,12 +26,12 @@
     </div>
     <div class="header">Every 18 Hours</div>
     <div class="item">
-        <input type="checkbox" id="map" #map>
-        <label for="map" [ngClass]="{'done' : map.checked}">Treasure Map</label>
+        <input type="checkbox" id="map" #map (click)="checkTimer(map, 'map')">
+        <label for="map" [ngClass]="{'done' : map.checked}">Treasure Map<span *ngIf="manualTimers.treasureMapTimer"> (Resets in: {{getManualTimeDifference(manualTimers.treasureMapTimer)}})</span></label>
     </div>
     <div class="item">
-        <input type="checkbox" id="squadron" #squadron>
-        <label for="squadron" [ngClass]="{'done' : squadron.checked}">GC Squadron</label>
+        <input type="checkbox" id="squadron" #squadron (click)="checkTimer(squadron, 'squadron')">
+        <label for="squadron" [ngClass]="{'done' : squadron.checked}">GC Squadron<span *ngIf="manualTimers.gcSquadronTimer"> (Resets in: {{getManualTimeDifference(manualTimers.gcSquadronTimer)}})</span></label>
     </div>
     <div class="header">Weekly</div>
     <div class="timer">Weekly resets in: <span>{{weeklyTimer.days}} Days, {{weeklyTimer.hours}} Hours, and {{weeklyTimer.minutes}} Minutes</span></div>
@@ -54,8 +53,8 @@
             <label for="jumbo-cactpot" [ngClass]="{'done' : jumbocactpot.checked}">Jumbo Cactpot</label>
         </div>
         <div class="item">
-            <input type="checkbox" id="wonderous-tails" #wondroustails>
-            <label for="wonderous-tails" [ngClass]="{'done' : wondroustails.checked}">Wondrous Tails</label>
+            <input type="checkbox" id="wondrous-tails" #wondroustails>
+            <label for="wondrous-tails" [ngClass]="{'done' : wondroustails.checked}">Wondrous Tails</label>
         </div>
         <div class="item">
             <input type="checkbox" id="fashion-report" #fashionreport>
