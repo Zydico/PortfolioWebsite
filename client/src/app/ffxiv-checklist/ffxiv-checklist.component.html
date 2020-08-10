@@ -41,6 +41,10 @@
             <label for="raids" [ngClass]="{'done' : raids.checked}">Eden Raids</label>
         </div>
         <div class="item">
+            <input type="checkbox" id="alliance-raid" #allianceraid>
+            <label for="alliance-raid" [ngClass]="{'done' : allianceraid.checked}">Alliance Raid</label>
+        </div>
+        <div class="item">
             <input type="checkbox" id="tomestones" #tomestones>
             <label for="tomestones" [ngClass]="{'done' : tomestones.checked}">Cap Tomestones</label>
         </div>
@@ -55,6 +59,10 @@
         <div class="item">
             <input type="checkbox" id="wondrous-tails" #wondroustails>
             <label for="wondrous-tails" [ngClass]="{'done' : wondroustails.checked}">Wondrous Tails</label>
+        </div>
+        <div class="item">
+            <input type="checkbox" id="faux-hollows" #fauxhollows>
+            <label for="faux-hollows" [ngClass]="{'done' : fauxhollows.checked}">Faux Hollows</label>
         </div>
         <div class="item">
             <input type="checkbox" id="fashion-report" #fashionreport>

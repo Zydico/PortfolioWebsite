@@ -45,6 +45,8 @@ export class FfxivChecklistComponent implements OnInit {
     let fashionreport = (<HTMLInputElement> document.getElementById('fashion-report'));
     let maskedcarnivale = (<HTMLInputElement> document.getElementById('masked-carnivale'));
     let domanenclave = (<HTMLInputElement> document.getElementById('doman-enclave'));
+    let fauxhollows = (<HTMLInputElement> document.getElementById('faux-hollows'));
+    let allianceraid = (<HTMLInputElement> document.getElementById('alliance-raid'));
     roulettes.checked = this.getCookie('ffxiv-roulettes') === 'true';
     minicactpot.checked = this.getCookie('ffxiv-minicactpot') === 'true';
     beasttribes.checked = this.getCookie('ffxiv-beasttribes') === 'true';
@@ -59,6 +61,8 @@ export class FfxivChecklistComponent implements OnInit {
     fashionreport.checked = this.getCookie('ffxiv-fashionreport') === 'true';
     maskedcarnivale.checked = this.getCookie('ffxiv-maskedcarnivale') === 'true';
     domanenclave.checked = this.getCookie('ffxiv-domanenclave') === 'true';
+    fauxhollows.checked = this.getCookie('ffxiv-fauxhollows') === 'true';
+    allianceraid.checked = this.getCookie('ffxiv-allianceraid') === 'true';
     if (this.getCookie('ffxiv-treasuremaptimer') && this.getCookie('ffxiv-treasuremaptimer') !== 'null') {
       this.manualTimers.treasureMapTimer = new Date(this.getCookie('ffxiv-treasuremaptimer'));
     }
@@ -116,6 +120,8 @@ export class FfxivChecklistComponent implements OnInit {
     let fashionreport = (<HTMLInputElement> document.getElementById('fashion-report'));
     let maskedcarnivale = (<HTMLInputElement> document.getElementById('masked-carnivale'));
     let domanenclave = (<HTMLInputElement> document.getElementById('doman-enclave'));
+    let fauxhollows = (<HTMLInputElement> document.getElementById('faux-hollows'));
+    let allianceraid = (<HTMLInputElement> document.getElementById('alliance-raid'));
 
     let ffxivDailyReset = new Date(this.getCookie('ffxiv-dailyReset'));
     if (!ffxivDailyReset || (ffxivDailyReset && nowUTC > ffxivDailyReset)) {
@@ -143,6 +149,8 @@ export class FfxivChecklistComponent implements OnInit {
       fashionreport.checked = false;
       maskedcarnivale.checked = false;
       domanenclave.checked = false;
+      fauxhollows.checked = false;
+      allianceraid.checked = false;
     }
 
     if (this.manualTimers.treasureMapTimer && nowUTC > this.manualTimers.treasureMapTimer) {
@@ -168,6 +176,8 @@ export class FfxivChecklistComponent implements OnInit {
     this.setCookie('ffxiv-fashionreport', fashionreport.checked, 7);
     this.setCookie('ffxiv-maskedcarnivale', maskedcarnivale.checked, 7);
     this.setCookie('ffxiv-domanenclave', domanenclave.checked, 7);
+    this.setCookie('ffxiv-fauxhollows', fauxhollows.checked, 7);
+    this.setCookie('ffxiv-allianceraid', allianceraid.checked, 7);
 
     this.setCookie('ffxiv-treasuremaptimer', this.manualTimers.treasureMapTimer, 7);
     this.setCookie('ffxiv-squadrontimer', this.manualTimers.gcSquadronTimer, 7);

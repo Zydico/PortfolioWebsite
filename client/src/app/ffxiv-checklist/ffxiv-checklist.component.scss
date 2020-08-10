@@ -18,10 +18,6 @@
     top: 0.5rem;
 }
 
-label {
-    user-select: none;
-}
-
 #reset-button {
     @extend %back-button;
     position: absolute;
@@ -39,24 +35,25 @@ label {
 }
 
 .header {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     margin-top: 1rem;
 }
 
 .timer {
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     font-size: 1rem;
 }
 
 label {
-    font-size: 1.1rem;
-    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+    user-select: none;
 }
 
 input {
-    width: 1rem;
-    height: 1rem;
+    width: 0.75rem;
+    height: 0.75rem;
     vertical-align: top;
 }
 
