@@ -3,13 +3,14 @@
 
 #title-page {
     @extend %center-content;
-    width: 100vw;
+    width: 100%;
     height: calc(100vh - #{$headerHeight});
     flex-direction: column;
 }
 
 #title {
     font-size: 3rem;
+    text-align: center;
 }
 
 #title::after {
@@ -26,6 +27,8 @@
     font-size: 1.75rem;
     user-select: none;
     position: relative;
+    text-align: center;
+    width: 25rem;
 }
 
 #about-me {
