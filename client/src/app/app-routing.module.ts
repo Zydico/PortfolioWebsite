@@ -4,6 +4,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ProjectsHomeComponent } from './portfolio/components/projects-home/projects-home.component';
 import { SortAlgorithmVisualizerComponent } from './sort-algorithm-visualizer/sort-algorithm-visualizer.component';
 import { FfxivChecklistComponent } from './ffxiv-checklist/ffxiv-checklist.component';
+import { ProjectsGamesComponent } from './portfolio/components/projects-games/projects-games.component';
+import { ProjectsWebAppsComponent } from './portfolio/components/projects-web-apps/projects-web-apps.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portfolio', pathMatch: 'full' },
@@ -12,6 +14,8 @@ const routes: Routes = [
     component: PortfolioComponent,
     children: [
       { path: '', component: ProjectsHomeComponent },
+      { path: 'games', component: ProjectsGamesComponent },
+      { path: 'web-apps', component: ProjectsWebAppsComponent }
     ]
   },
   { path: 'sort-algorithm-visualizer', component: SortAlgorithmVisualizerComponent },

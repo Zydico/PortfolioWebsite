@@ -17,6 +17,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { SortAlgorithmVisualizerComponent } from './sort-algorithm-visualizer/sort-algorithm-visualizer.component';
 import { FfxivChecklistComponent } from './ffxiv-checklist/ffxiv-checklist.component';
+import { ProjectsGamesComponent } from './portfolio/components/projects-games/projects-games.component';
+import { ProjectsWebAppsComponent } from './portfolio/components/projects-web-apps/projects-web-apps.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { FfxivChecklistComponent } from './ffxiv-checklist/ffxiv-checklist.compo
     LoaderComponent,
     SortAlgorithmVisualizerComponent,
     FfxivChecklistComponent,
+    ProjectsGamesComponent,
+    ProjectsWebAppsComponent,
   ],
   imports: [
     BrowserModule,

@@ -224,7 +224,12 @@ export class FfxivChecklistComponent implements OnInit {
   goBack(): void {
     this.loader.showLoader();
     setTimeout(() => {
-      this.router.navigate(['portfolio']);
+      this.router.navigate(['portfolio/web-apps']).then(() => {
+        let element = document.getElementById('projects-page');
+        if (element) {
+          element.scrollIntoView();
+        }
+      });
       this.loader.hideLoader();
     }, 1200);
   }

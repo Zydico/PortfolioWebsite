@@ -46,7 +46,7 @@ export class ScrollHandlerService {
     } else {
       this.isLocked = true;
     }
-    if (window.scrollY + window.innerHeight >= document.body.offsetHeight) {
+    if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 50) {
       this.isOnProjects = false;
       this.isOnContact = true;
     }
