@@ -231,7 +231,7 @@ export class FfxivChecklistComponent implements OnInit {
         }
       });
       this.loader.hideLoader();
-    }, 1200);
+    }, 700);
   }
 
   checkTimer(input: HTMLInputElement, type: string) {

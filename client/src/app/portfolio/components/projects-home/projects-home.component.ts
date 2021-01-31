@@ -19,7 +19,7 @@ export class ProjectsHomeComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate([path]);
       this.loader.hideLoader();
-    }, 1200);
+    }, 700);
   }
 
 }

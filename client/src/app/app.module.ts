@@ -19,6 +19,7 @@ import { SortAlgorithmVisualizerComponent } from './sort-algorithm-visualizer/so
 import { FfxivChecklistComponent } from './ffxiv-checklist/ffxiv-checklist.component';
 import { ProjectsGamesComponent } from './portfolio/components/projects-games/projects-games.component';
 import { ProjectsWebAppsComponent } from './portfolio/components/projects-web-apps/projects-web-apps.component';
+import { ProjectsPhysicsComponent } from './portfolio/components/projects-physics/projects-physics.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ProjectsWebAppsComponent } from './portfolio/components/projects-web-ap
     FfxivChecklistComponent,
     ProjectsGamesComponent,
     ProjectsWebAppsComponent,
+    ProjectsPhysicsComponent
   ],
   imports: [
     BrowserModule,

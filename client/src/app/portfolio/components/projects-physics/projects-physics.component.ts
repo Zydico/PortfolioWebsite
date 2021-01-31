@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/shared/services/loader/loader.service';
 
 @Component({
-  selector: 'app-projects-web-apps',
-  templateUrl: './projects-web-apps.component.html',
-  styleUrls: ['./projects-web-apps.component.scss', '../projects-page/projects.scss']
+  selector: 'app-projects-physics',
+  templateUrl: './projects-physics.component.html',
+  styleUrls: ['./projects-physics.component.scss', '../projects-page/projects.scss']
 })
-export class ProjectsWebAppsComponent implements OnInit {
+export class ProjectsPhysicsComponent implements OnInit {
 
   constructor(private router: Router, private loader: LoaderService) { }
 

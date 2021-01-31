@@ -6,6 +6,7 @@ import { SortAlgorithmVisualizerComponent } from './sort-algorithm-visualizer/so
 import { FfxivChecklistComponent } from './ffxiv-checklist/ffxiv-checklist.component';
 import { ProjectsGamesComponent } from './portfolio/components/projects-games/projects-games.component';
 import { ProjectsWebAppsComponent } from './portfolio/components/projects-web-apps/projects-web-apps.component';
+import { ProjectsPhysicsComponent } from './portfolio/components/projects-physics/projects-physics.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portfolio', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [
       { path: '', component: ProjectsHomeComponent },
       { path: 'games', component: ProjectsGamesComponent },
-      { path: 'web-apps', component: ProjectsWebAppsComponent }
+      { path: 'web-apps', component: ProjectsWebAppsComponent },
+      { path: 'physics', component: ProjectsPhysicsComponent }
     ]
   },
   { path: 'sort-algorithm-visualizer', component: SortAlgorithmVisualizerComponent },

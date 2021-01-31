@@ -75,7 +75,7 @@ export class ProjectsPageComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.router.navigate(['portfolio']);
       this.loader.hideLoader();
-    }, 1200);
+    }, 700);
   }
 
   getRoute(): string {

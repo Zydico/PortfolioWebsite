@@ -75,7 +75,7 @@ export class SortAlgorithmVisualizerComponent implements OnInit {
         }
       });
       this.loader.hideLoader();
-    }, 1200);
+    }, 700);
   }
 
   generateNewGraph(): void {
