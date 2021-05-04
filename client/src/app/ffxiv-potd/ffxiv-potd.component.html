@@ -1,0 +1,30 @@
+<div id="background"></div>
+<div id="back-button" (click)="goBack()">Back</div>
+<div id="info-button" (click)="showHelp()">Info</div>
+<div id="help-info">
+    This is a map of accursed hoard locations on Palace of the Dead on floors 1-9. The top-down view of the maps were taken from PunishedPineapple's 
+    <a href="https://punishedpineapple.github.io/potd_maps/1-10/" target="_blank">website</a>. Chest location data was slowly obtained by me through 
+    a combination of accidents and intuition pomanders. Trap data is also combined with chest location data, since it seems that both locations are
+    shared. If going for the achievement, I'd recommend going to every location and waiting for a bit on that spot, even if it happens to have a trap
+    on top.
+    <br><br>
+    Whenever you go to a new floor, your layout is randomly chosen, so you can appear in a room from either layout. To use this map, you will have to find your 
+    current location and layout. This can be done by comparing the general colored aura of a room to one you have
+    access to and looking for any specific landmarks that would help you pinpoint which layout and room you are currently in. I personally prefer looking
+    for vines or a tower in the middle, and then comparing it to nearby rooms while matching the colors. I have added buttons on the side to help you filter
+    out by vines or towers in an effort to make this process faster.
+    <br><br>
+    If you have any questions, feel free to contact me on Discord (Zydico#2751) or message me if you're on the Primal Datacenter (Mil Kis from Ultros)
+    <div id="exit-button" (click)="hideHelp()">x</div>
+</div>
+<div id="filters">
+    <input #all id="all" name="mode" type="radio" value="All" (change)="radioChangeHandler($event)" checked><label for="all">All</label><br>
+    <input #vines id="vines" name="mode" type="radio" value="Vines" (change)="radioChangeHandler($event)"><label for="vines">Vines</label><br>
+    <input #towers id="towers" name="mode" type="radio" value="Towers" (change)="radioChangeHandler($event)"><label for="towers">Towers</label>
+</div>
+<div>
+    <img class="potd" id="potd-map" src="assets/PotdMap.png" alt="Potd Map">
+    <img class="potd" id="potd-towers" src="assets/PotdTowers.png" alt="Potd Towers" *ngIf="towers.checked">
+    <img class="potd" id="potd-vines" src="assets/PotdVines.png" alt="Potd Vines" *ngIf="vines.checked">
+    <img class="potd" id="potd-colors" src="assets/PotdColors.png" alt="Potd Colors">
+</div>

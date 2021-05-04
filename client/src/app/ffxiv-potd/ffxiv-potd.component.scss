@@ -1,0 +1,100 @@
+@import 'placeholders';
+@import 'variables';
+
+#background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgb(29, 29, 29);
+    z-index: -1;
+}
+
+#back-button {
+    @extend %back-button;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    background-color: rgb(84, 125, 238);
+}
+
+#back-button:hover {
+    background-color: rgb(142, 172, 255);
+}
+
+a {
+    color: rgb(226, 225, 225);
+}
+
+#help-info {
+    width: 90%;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.808);
+    padding: 2rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5rem;
+    z-index: 999;
+    display: none;
+}
+
+#exit-button {
+    color: rgb(187, 187, 187);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(83, 83, 83);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+#exit-button:hover {
+    background-color: rgb(129, 129, 129);
+}
+
+#info-button {
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgb(255, 65, 65);
+    user-select: none;
+    cursor: pointer;
+    z-index: 500;
+}
+
+#info-button:hover {
+    background-color: rgb(255, 115, 115);
+}
+
+.potd {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+
+#filters {
+    position: fixed;
+    background-color: rgba(100, 100, 100, 0.788);
+    right: 1rem;
+    top: 4rem;
+    padding: 0.5rem 0.75rem 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    z-index: 500;
+}
+
+input {
+    margin-bottom: 0.5rem;
+}
