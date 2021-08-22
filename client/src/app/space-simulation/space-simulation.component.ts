@@ -43,7 +43,8 @@ export class SpaceSimulationComponent implements OnInit {
       this.scene.add(mesh);
     })
 
-    let light = new THREE.AmbientLight('white');
+    let light = new THREE.DirectionalLight(0xFFFFFF);
+    light.position.set(0.5, 0, 1);
     this.scene.add(light);
 
     this.camera.position.z = 2*sun.radius;

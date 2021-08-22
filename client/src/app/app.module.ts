@@ -21,6 +21,9 @@ import { ProjectsGamesComponent } from './portfolio/components/projects-games/pr
 import { ProjectsWebAppsComponent } from './portfolio/components/projects-web-apps/projects-web-apps.component';
 import { FfxivPotdComponent } from './ffxiv-potd/ffxiv-potd.component';
 import { SpaceSimulationComponent } from './space-simulation/space-simulation.component';
+import { ProjectsSchoolComponent } from './portfolio/components/projects-school/projects-school.component';
+import { PaperAirplaneComponent } from './paper-airplane/paper-airplane.component';
+import { CreditCalculatorComponent } from './credit-calculator/credit-calculator.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { SpaceSimulationComponent } from './space-simulation/space-simulation.co
     ProjectsGamesComponent,
     ProjectsWebAppsComponent,
     FfxivPotdComponent,
-    SpaceSimulationComponent
+    SpaceSimulationComponent,
+    ProjectsSchoolComponent,
+    PaperAirplaneComponent,
+    CreditCalculatorComponent
   ],
   imports: [
     BrowserModule,
