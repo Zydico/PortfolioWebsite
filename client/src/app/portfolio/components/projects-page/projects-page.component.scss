@@ -23,3 +23,14 @@
 #back-button:hover {
     background-color: rgb(170, 170, 255);
 }
+
+#preload {
+    position: absolute;
+    height: 0px;
+    width: 0px;
+}
+
+.preloaded-image {
+    width: 0px;
+    height: 0px;
+}

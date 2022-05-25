@@ -11,10 +11,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('Matthew Hwang\'s Portfolio Website');
     this.metaService.addTags([
-      {name: 'keywords', content: 'Portfolio, Website, Matthew, Hwang, Aerospace, Mechanical, Engineering, Student'},
-      {name: 'description', content: 'Matthew Hwang\'s Portfolio Website'},
+      {name: 'keywords', content: 'Portfolio, Website, Matthew, Hwang, Aerospace, Mechanical, Engineering, Student, NASA'},
       {name: 'robots', content: 'index, follow'},
-      {name: 'og:image', content: 'assets/CoverImage.png'}
     ]);
   }
 }

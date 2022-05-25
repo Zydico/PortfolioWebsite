@@ -11,6 +11,10 @@
     z-index: -1;
 }
 
+::ng-deep html, body {
+    overflow-x: visible;
+}
+
 #back-button {
     @extend %back-button;
     position: absolute;
@@ -47,6 +51,7 @@ a {
     top: 0.5rem;
     right: 0.5rem;
     width: 2rem;
+    max-width: 2rem;
     height: 2rem;
     background-color: rgb(83, 83, 83);
     border-radius: 0.5rem;
@@ -78,7 +83,6 @@ a {
 }
 
 .potd {
-    width: 100%;
     position: absolute;
     left: 0;
     top: 0;

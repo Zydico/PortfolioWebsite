@@ -16,7 +16,6 @@ import { ProjectsHomeComponent } from './portfolio/components/projects-home/proj
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { SortAlgorithmVisualizerComponent } from './sort-algorithm-visualizer/sort-algorithm-visualizer.component';
-import { FfxivChecklistComponent } from './ffxiv-checklist/ffxiv-checklist.component';
 import { ProjectsGamesComponent } from './portfolio/components/projects-games/projects-games.component';
 import { ProjectsWebAppsComponent } from './portfolio/components/projects-web-apps/projects-web-apps.component';
 import { FfxivPotdComponent } from './ffxiv-potd/ffxiv-potd.component';
@@ -24,6 +23,9 @@ import { SpaceSimulationComponent } from './space-simulation/space-simulation.co
 import { ProjectsSchoolComponent } from './portfolio/components/projects-school/projects-school.component';
 import { PaperAirplaneComponent } from './paper-airplane/paper-airplane.component';
 import { CreditCalculatorComponent } from './credit-calculator/credit-calculator.component';
+import { BalsaWoodGliderComponent } from './balsa-wood-glider/balsa-wood-glider.component';
+import { PianoPedalComponent } from './piano-pedal/piano-pedal.component';
+import { BloomingForestComponent } from './blooming-forest/blooming-forest.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +41,16 @@ import { CreditCalculatorComponent } from './credit-calculator/credit-calculator
     ProjectsHomeComponent,
     LoaderComponent,
     SortAlgorithmVisualizerComponent,
-    FfxivChecklistComponent,
     ProjectsGamesComponent,
     ProjectsWebAppsComponent,
     FfxivPotdComponent,
     SpaceSimulationComponent,
     ProjectsSchoolComponent,
     PaperAirplaneComponent,
-    CreditCalculatorComponent
+    CreditCalculatorComponent,
+    BalsaWoodGliderComponent,
+    PianoPedalComponent,
+    BloomingForestComponent,
   ],
   imports: [
     BrowserModule,

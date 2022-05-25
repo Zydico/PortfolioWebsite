@@ -14,6 +14,11 @@ export class FfxivPotdComponent implements OnInit {
   constructor(private router: Router, private loader: LoaderService) { }
 
   ngOnInit(): void {
+    let elements = document.getElementsByClassName('potd') as HTMLCollectionOf<HTMLElement>;
+    let width = window.innerWidth-40;
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].style.width = width + 'px';
+    }
   }
 
   goBack(): void {

@@ -1,0 +1,64 @@
+@import 'placeholders';
+@import 'variables';
+
+#background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgb(29, 29, 29);
+    z-index: -1;
+    background-image: url("/assets/BloomingForest.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+
+#container {
+    background-color: rgba(0, 0, 0, 0.753);
+    width: 1000px;
+    max-width: 100%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    height: 600px;
+    font-size: 18pt;
+    padding: 20px;
+    position: relative;
+}
+
+#inner-container {
+    background-color: rgba(255, 255, 255, 0.658);
+    width: calc(100% - 40px);
+    position: absolute;
+    bottom: -380;
+    height: 400px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    font-size: 18pt;
+    padding-left: 30px;
+    padding-top: 20px;
+    color: black;
+
+}
+
+#back-button {
+    @extend %back-button;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    background-color: rgb(84, 125, 238);
+}
+
+#reset-button {
+    margin-top: 10px;
+    @extend %back-button;
+    background-color: rgb(84, 125, 238);
+}
+
+#back-button:hover, #reset-button:hover {
+    background-color: rgb(142, 172, 255);
+}
