@@ -17,17 +17,23 @@ export class BloomingForestComponent implements OnInit {
     if (list) {
       let children = list.children.length;
       if (children < 10) {
-        let element = document.createElement('li');
         if (event.key === 'ArrowDown') {
+          let element = document.createElement('li');
           element.innerHTML = 'Down';
+          list.appendChild(element);
         } else if (event.key === 'ArrowUp') {
-          element.innerHTML = 'Up';    
+          let element = document.createElement('li');
+          element.innerHTML = 'Up';
+          list.appendChild(element);
         } else if (event.key === 'ArrowLeft') {
-          element.innerHTML = 'Left';    
+          let element = document.createElement('li');
+          element.innerHTML = 'Left';
+          list.appendChild(element);   
         } else if (event.key === 'ArrowRight') {
-          element.innerHTML = 'Right';        
+          let element = document.createElement('li');
+          element.innerHTML = 'Right';
+          list.appendChild(element);      
         }
-        list.appendChild(element);
       }
     }
   }

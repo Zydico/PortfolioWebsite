@@ -12,6 +12,7 @@ export class PianoPedalComponent implements OnInit {
   constructor(private router: Router, private loader: LoaderService) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
 
   goBack(): void {
