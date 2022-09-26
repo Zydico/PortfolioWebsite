@@ -26,6 +26,7 @@ import { CreditCalculatorComponent } from './credit-calculator/credit-calculator
 import { BalsaWoodGliderComponent } from './balsa-wood-glider/balsa-wood-glider.component';
 import { PianoPedalComponent } from './piano-pedal/piano-pedal.component';
 import { BloomingForestComponent } from './blooming-forest/blooming-forest.component';
+import { YtdlComponent } from './ytdl/ytdl.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { BloomingForestComponent } from './blooming-forest/blooming-forest.compo
     BalsaWoodGliderComponent,
     PianoPedalComponent,
     BloomingForestComponent,
+    YtdlComponent,
   ],
   imports: [
     BrowserModule,

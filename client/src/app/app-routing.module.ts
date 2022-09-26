@@ -13,6 +13,7 @@ import { CreditCalculatorComponent } from './credit-calculator/credit-calculator
 import { BalsaWoodGliderComponent } from './balsa-wood-glider/balsa-wood-glider.component';
 import { PianoPedalComponent } from './piano-pedal/piano-pedal.component';
 import { BloomingForestComponent } from './blooming-forest/blooming-forest.component';
+import { YtdlComponent } from './ytdl/ytdl.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portfolio', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'balsa-wood-glider', component: BalsaWoodGliderComponent },
   { path: 'piano-pedal', component: PianoPedalComponent },
   { path: 'blooming-forest', component: BloomingForestComponent },
+  { path: 'ytdl', component: YtdlComponent },
   { path: '**', redirectTo: '/portfolio', pathMatch: 'full' }
 ];
 

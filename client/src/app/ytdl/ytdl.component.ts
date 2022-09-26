@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoaderService } from '../shared/services/loader/loader.service';
 
 @Component({
-  selector: 'app-balsa-wood-glider',
-  templateUrl: './balsa-wood-glider.component.html',
-  styleUrls: ['./balsa-wood-glider.component.scss']
+  selector: 'app-ytdl',
+  templateUrl: './ytdl.component.html',
+  styleUrls: ['./ytdl.component.scss']
 })
-export class BalsaWoodGliderComponent implements OnInit {
+export class YtdlComponent implements OnInit {
+  url = new FormControl('');
 
   constructor(private router: Router, private loader: LoaderService) { }
 
   ngOnInit(): void {
-    window.scrollTo(0, 0);
   }
 
   goBack(): void {
