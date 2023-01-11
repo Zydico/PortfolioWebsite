@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { LoaderService } from '../shared/services/loader/loader.service';
 import { Orbit } from './orbit';
+import { Planet } from './planet';
 
 @Component({
   selector: 'app-kepler',
@@ -15,11 +16,13 @@ export class KeplerComponent implements OnInit {
   width: number = 0;
   height: number = 0;
   orbits: Orbit[] = [];
+  planets: Planet[] = [];
   currentRatio: number = 1.25;
+  currentAps: number = 1;
   
   variables = this.formBuilder.group({
     planets: 1,
-    ratio: 1.25,
+    ratio: 1.25
   });
 
   constructor(public loader: LoaderService, private formBuilder: FormBuilder) { }
@@ -54,6 +57,7 @@ export class KeplerComponent implements OnInit {
     
 
     this.orbits = [];
+    this.planets = [];
     this.currentRatio = Number(this.variables.get('ratio').value);
     let lastMajor = 0;
     let lastMinor = 0;
@@ -73,11 +77,19 @@ export class KeplerComponent implements OnInit {
       orbit.major = lastMajor;
       orbit.minor = lastMinor;
       this.orbits.push(orbit);
+
+      let planet = {} as Planet;
+      planet.color = orbit.color;
+      this.planets.push(planet);
     }
   }
 
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  getRandomDecimal(min, max) {
+    return Math.random() * (max - min) + min;
   }
 
   draw(): void {
@@ -86,7 +98,7 @@ export class KeplerComponent implements OnInit {
     ctx.clearRect(-this.width * 3, -this.height * 3, this.width * 6, this.height * 6);
     let centerX = canvas.width / 2;
     let centerY = canvas.height / 2;
-    let sunRadius = 3;
+    let sunRadius = 4;
     ctx.fillStyle = 'rgb(253, 184, 19)';
     ctx.beginPath();
     let sunX = centerX - centerX / 3;
@@ -96,18 +108,37 @@ export class KeplerComponent implements OnInit {
     ctx.closePath();
     for (let i = 0; i < this.orbits.length; i++) {
       let orbit: Orbit = this.orbits[i];
-      orbit.centerX = sunX + Math.sqrt(Math.pow(orbit.major^2, 2) - Math.pow(orbit.minor^2, 2));
+      let planet: Planet = this.planets[i];
+      orbit.centerX = sunX + Math.sqrt(this.square(orbit.major) - this.square(orbit.minor));
       orbit.centerY = sunY;
       ctx.strokeStyle = orbit.color;
       ctx.beginPath();
       ctx.ellipse(orbit.centerX, orbit.centerY, orbit.major, orbit.minor, 0, 0, 2 * Math.PI);
-      console.log(sunX);
-      console.log(orbit.centerX);
-      console.log(orbit.centerX - sunX);
-      console.log(orbit.major);
-      console.log(orbit.minor);
       ctx.stroke();
+      ctx.closePath();
+
+      if (!planet.x) {
+        let x = this.getRandomDecimal(-orbit.major, orbit.major);
+        let y = Math.sqrt(this.square(orbit.minor) - this.square(orbit.minor)*this.square(x)/(this.square(orbit.major)));
+        let sign = this.getRandomInt(1, 3);
+        if (sign == 2) {
+          y = y * -1;
+        }
+        planet.x = orbit.centerX + x;
+        planet.y = orbit.centerY + y;
+        console.log(x);
+        console.log(y);
+      }
+      ctx.fillStyle = orbit.color;
+      ctx.beginPath();
+      ctx.arc(planet.x, planet.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
     }
+  }
+
+  square(num) {
+    return Math.pow(num, 2);
   }
 
   getField(field) {
