@@ -10,6 +10,7 @@ import { CreditCalculatorComponent } from './credit-calculator/credit-calculator
 import { BalsaWoodGliderComponent } from './balsa-wood-glider/balsa-wood-glider.component';
 import { PianoPedalComponent } from './piano-pedal/piano-pedal.component';
 import { AirfoilAnalysisComponent } from './airfoil-analysis/airfoil-analysis.component';
+import { KeplerComponent } from './kepler/kepler.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portfolio', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   },
   // Web Apps
   { path: 'sort-algorithm-visualizer', component: SortAlgorithmVisualizerComponent },
+  { path: 'kepler-simulation', component: KeplerComponent },
 
   // School Projects
   { path: 'paper-airplane', component: PaperAirplaneComponent },

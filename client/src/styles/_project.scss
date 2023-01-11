@@ -77,3 +77,50 @@ img {
     margin-right: auto;
     margin-bottom: 1rem;
 }
+
+.simulation {
+    background-color: #1d1d1d;
+    border-radius: 2px;
+    border-color: rgb(17, 17, 17);
+    width: 100%;
+    aspect-ratio: 4/3;
+    position: relative;
+}
+
+.formContainer {
+    background-color: rgb(25, 90, 50);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+label {
+    margin-right: 0.5rem;
+}
+
+input {
+    width: 3rem;
+    font-size: 0.9rem;
+}
+
+.formField {
+    display: inline-block;
+    margin-right: 3rem;
+}
+
+.formButton {
+    margin-top: 1rem;
+}
+
+button {
+    cursor: pointer;
+    background-color: rgb(40, 138, 78);
+    color: white;
+    border: 0;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+button:hover {
+    background-color: rgb(51, 175, 99);
+}

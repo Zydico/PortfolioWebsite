@@ -25,6 +25,7 @@ import { BalsaWoodGliderComponent } from './balsa-wood-glider/balsa-wood-glider.
 import { PianoPedalComponent } from './piano-pedal/piano-pedal.component';
 import { AirfoilAnalysisComponent } from './airfoil-analysis/airfoil-analysis.component';
 import { ProjectBoxComponent } from './shared/components/project-box/project-box.component';
+import { KeplerComponent } from './kepler/kepler.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ProjectBoxComponent } from './shared/components/project-box/project-box
     PianoPedalComponent,
     AirfoilAnalysisComponent,
     ProjectBoxComponent,
+    KeplerComponent,
   ],
   imports: [
     BrowserModule,

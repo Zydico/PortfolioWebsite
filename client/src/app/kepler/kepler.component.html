@@ -1,0 +1,31 @@
+<div id="background"></div>
+<div id="back-button" (click)="loader.changePage('portfolio/school')">Back</div>
+<div class="container">
+    <div class="header">
+        Kepler Simulation
+    </div>
+    <div class="date">
+        January 2023 - Current (WIP)
+    </div>
+    <div class="description">
+        A simple simulation of Kepler's laws in action. Set the variables and click on the "update simulation" button. 
+    </div>
+    <br>
+    <div class="formContainer">
+        <form [formGroup]="variables" (ngSubmit)="onSubmit()">
+            <div class="formField">
+                <label for="planets">Planets:</label>
+                <input id="planets" type="text" formControlName="planets">
+            </div>
+            <div class="formField">
+                <label for="ratio">Major/Minor axis ratio</label>
+                <input id="ratio" type="text" formControlName="ratio">
+            </div>
+            <div class="formButton">
+                <button class="button" type="submit">Update Simulation</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <canvas class="simulation" id="simulation"></canvas>
+</div>
