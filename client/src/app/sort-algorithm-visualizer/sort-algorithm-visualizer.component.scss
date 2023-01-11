@@ -1,4 +1,5 @@
-@import 'placeholders';
+@import 'project';
+@import 'variables';
 
 #header {
     width: 100vw;
@@ -137,14 +138,6 @@ canvas {
     }
 }
 
-#back-button {
-    @extend %back-button;
-}
-
-#back-button:hover {
-    @extend %back-button-hover;
-}
-
 #iterations-only {
     margin-left: 1rem;
 }
@@ -156,4 +149,12 @@ label {
 
 .disabled-sort {
     color: rgb(87, 87, 87) !important;
+}
+
+#back-button {
+    background-color: $darkBlue;
+}
+
+#back-button:hover {
+    background-color: $lightBlue;
 }

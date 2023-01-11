@@ -1,0 +1,84 @@
+@import 'variables';
+@import 'placeholders';
+
+.project {
+    margin: 1rem;
+    width: 10rem;
+    height: 10rem;
+    background-color: $superLightGray;
+    position: relative;
+    @extend %center-content;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.2s linear;
+}
+
+.blur {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    transition: box-shadow 0.2s ease-out;
+    box-shadow: 0 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+}
+
+.project-name {
+    z-index: 2;
+    cursor: pointer;
+    pointer-events: none;
+    text-align: center;
+    width: 60%;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+}
+
+.blur:hover {
+    box-shadow: 0 0 0.25rem 0.25rem rgba(0, 0, 0, 0.685);
+}
+
+.project:hover {
+    background-color: rgb(196, 196, 196);
+}
+
+.Folder-Blue {
+    background-image: url("/assets/Images/Folder-Blue.png");
+}
+
+.Folder-Orange {
+    background-image: url("/assets/Images/Folder-Orange.png");
+}
+
+.Folder-Pink {
+    background-image: url("/assets/Images/Folder-Pink.png");
+}
+
+#balsa-wood-glider {
+    background-image: url("/assets/Images/MAE_215_Project/Img5.jpg");
+}
+
+#piano-pedal {
+    background-image: url("/assets/Images/MAE_211_Project/Img4.jpg");
+}
+
+#airfoil-analysis {
+    background-image: url("/assets/Images/MAE_335_Project/AirfoilAnalysis.jpg");
+}
+
+#credit-calculator, #paper-airplane {
+    background-image: url("/assets/Images/Matlab.jpg");
+}
+
+#sort-algorithm-visualizer {
+    background-image: url("/assets/Images/Sort.png");
+}

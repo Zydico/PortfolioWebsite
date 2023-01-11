@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/shared/services/loader/loader.service';
 
 @Component({
@@ -9,17 +8,9 @@ import { LoaderService } from 'src/app/shared/services/loader/loader.service';
 })
 export class ProjectsHomeComponent implements OnInit {
 
-  constructor(private router: Router, private loader: LoaderService) { }
+  constructor(public loader: LoaderService) { }
 
   ngOnInit(): void {
-  }
-
-  changePage(path: string): void {
-    this.loader.showLoader();
-    setTimeout(() => {
-      this.router.navigate([path]);
-      this.loader.hideLoader();
-    }, 700);
   }
 
 }

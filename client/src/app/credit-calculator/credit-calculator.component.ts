@@ -8,23 +8,11 @@ import { LoaderService } from '../shared/services/loader/loader.service';
   styleUrls: ['./credit-calculator.component.scss']
 })
 export class CreditCalculatorComponent implements OnInit {
-
-  constructor(private router: Router, private loader: LoaderService) { }
-
+ 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
 
-  goBack(): void {
-    this.loader.showLoader();
-    setTimeout(() => {
-      this.router.navigate(['portfolio/school']).then(() => {
-        let element = document.getElementById('projects-page');
-        if (element) {
-          element.scrollIntoView();
-        }
-      });
-      this.loader.hideLoader();
-    }, 700);
-  }
+  constructor(public loader: LoaderService) { }
 
 }

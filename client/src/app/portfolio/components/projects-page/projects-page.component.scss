@@ -1,36 +1,7 @@
 @import 'variables';
+@import 'projects-menu';
 
 .page {
     background-color: $extremeLightGray;
     position: relative;
-}
-
-#back-button {
-    background-color: rgb(87, 87, 255);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    display: inline-block;
-    position: absolute;
-    left: 1rem;
-    top: 4rem;
-    font-size: 1.25rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.25s linear;
-}
-
-#back-button:hover {
-    background-color: rgb(170, 170, 255);
-}
-
-#preload {
-    position: absolute;
-    height: 0px;
-    width: 0px;
-}
-
-.preloaded-image {
-    width: 0px;
-    height: 0px;
 }

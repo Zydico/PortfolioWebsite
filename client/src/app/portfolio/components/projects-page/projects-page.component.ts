@@ -7,7 +7,7 @@ import { LoaderService } from 'src/app/shared/services/loader/loader.service';
   templateUrl: './projects-page.component.html',
   styleUrls: ['./projects-page.component.scss']
 })
-export class ProjectsPageComponent implements OnInit, AfterViewInit {
+export class ProjectsPageComponent {
 
   inAnimation: boolean = false;
 
@@ -15,13 +15,6 @@ export class ProjectsPageComponent implements OnInit, AfterViewInit {
     router.events.subscribe(val => {
       this.addListenersToProjects();      
     });
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-
   }
 
   addListenersToProjects(): void {
@@ -81,5 +74,4 @@ export class ProjectsPageComponent implements OnInit, AfterViewInit {
   getRoute(): string {
     return this.router.url;
   }
-
 }
