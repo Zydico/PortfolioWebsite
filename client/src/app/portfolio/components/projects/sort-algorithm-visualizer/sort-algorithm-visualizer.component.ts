@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoaderService } from '../shared/services/loader/loader.service';
+import { LoaderService } from '../../../../shared/services/loader/loader.service';
 import { async } from '@angular/core/testing';
 
 @Component({

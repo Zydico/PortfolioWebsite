@@ -5,5 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './projects-web-apps.component.html',
   styleUrls: ['./projects-web-apps.component.scss', '../projects-page/projects.scss']
 })
-export class ProjectsWebAppsComponent {
+export class ProjectsWebAppsComponent implements OnInit {
+ 
+  ngOnInit(): void {
+    let element = document.getElementById('anchor');
+    element.scrollIntoView();
+  }
 }

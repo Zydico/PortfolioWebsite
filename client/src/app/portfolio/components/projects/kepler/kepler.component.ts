@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { LoaderService } from '../shared/services/loader/loader.service';
+import { LoaderService } from '../../../../shared/services/loader/loader.service';
 import { Orbit } from './orbit';
 import { Planet } from './planet';
 
@@ -18,11 +18,12 @@ export class KeplerComponent implements OnInit {
   orbits: Orbit[] = [];
   planets: Planet[] = [];
   currentRatio: number = 1.25;
-  currentAps: number = 1;
-  
+  currentApt: number = 1;
+
   variables = this.formBuilder.group({
     planets: 1,
-    ratio: 1.25
+    ratio: 1.25,
+    apt: 1,
   });
 
   constructor(public loader: LoaderService, private formBuilder: FormBuilder) { }
@@ -55,10 +56,10 @@ export class KeplerComponent implements OnInit {
       newPlanets.setValue(10);
     }
     
-
     this.orbits = [];
     this.planets = [];
     this.currentRatio = Number(this.variables.get('ratio').value);
+    this.currentApt = Number(this.variables.get('apt').value);
     let lastMajor = 0;
     let lastMinor = 0;
     for (let i = 0; i < this.getField('planets'); i++) {
@@ -82,6 +83,12 @@ export class KeplerComponent implements OnInit {
       planet.color = orbit.color;
       this.planets.push(planet);
     }
+  }
+
+  getRadian(x, y) {
+    console.log(Math.atan2(y,x));
+    console.log(Math.atan2(y,x));
+    return Math.atan2(y, x);
   }
 
   getRandomInt(min, max) {
@@ -126,8 +133,6 @@ export class KeplerComponent implements OnInit {
         }
         planet.x = orbit.centerX + x;
         planet.y = orbit.centerY + y;
-        console.log(x);
-        console.log(y);
       }
       ctx.fillStyle = orbit.color;
       ctx.beginPath();

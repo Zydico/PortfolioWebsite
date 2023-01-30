@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoaderService } from '../shared/services/loader/loader.service';
+import { LoaderService } from '../../../../shared/services/loader/loader.service';
 
 @Component({
   selector: 'app-balsa-wood-glider',

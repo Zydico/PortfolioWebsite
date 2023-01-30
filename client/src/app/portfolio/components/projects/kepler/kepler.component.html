@@ -1,14 +1,15 @@
 <div id="background"></div>
-<div id="back-button" (click)="loader.changePage('portfolio/school')">Back</div>
+<div id="back-button" (click)="loader.changePage('portfolio/web-apps')">Back</div>
 <div class="container">
     <div class="header">
         Kepler Simulation
     </div>
     <div class="date">
-        January 11, 2023
+        January 11, 2023 - January 13, 2023
     </div>
     <div class="description">
-        A simple simulation of Kepler's laws in action. Set the variables and click on the "update simulation" button. 
+        A very simple simulation of Kepler's laws in action for objects of unknown masses and random semi-major/semi-minor axis. 
+        Set the variables and click on the "update simulation" button. 
     </div>
     <br>
     <div class="formContainer">
@@ -20,6 +21,10 @@
             <div class="formField">
                 <label for="ratio">Major/Minor axis ratio</label>
                 <input id="ratio" type="text" formControlName="ratio">
+            </div>
+            <div class="formField">
+                <label for="apt">Area per tick</label>
+                <input id="apt" type="text" formControlName="ratio">
             </div>
             <div class="formButton">
                 <button class="button" type="submit">Update Simulation</button>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoaderService } from '../shared/services/loader/loader.service';
+import { LoaderService } from '../../../../shared/services/loader/loader.service';
 
 @Component({
   selector: 'app-credit-calculator',

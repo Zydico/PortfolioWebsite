@@ -16,16 +16,16 @@ import { ProjectsPageComponent } from './portfolio/components/projects-page/proj
 import { ProjectsHomeComponent } from './portfolio/components/projects-home/projects-home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoaderComponent } from './shared/components/loader/loader.component';
-import { SortAlgorithmVisualizerComponent } from './sort-algorithm-visualizer/sort-algorithm-visualizer.component';
+import { SortAlgorithmVisualizerComponent } from './portfolio/components/projects/sort-algorithm-visualizer/sort-algorithm-visualizer.component';
 import { ProjectsWebAppsComponent } from './portfolio/components/projects-web-apps/projects-web-apps.component';
 import { ProjectsSchoolComponent } from './portfolio/components/projects-school/projects-school.component';
-import { PaperAirplaneComponent } from './paper-airplane/paper-airplane.component';
-import { CreditCalculatorComponent } from './credit-calculator/credit-calculator.component';
-import { BalsaWoodGliderComponent } from './balsa-wood-glider/balsa-wood-glider.component';
-import { PianoPedalComponent } from './piano-pedal/piano-pedal.component';
-import { AirfoilAnalysisComponent } from './airfoil-analysis/airfoil-analysis.component';
+import { PaperAirplaneComponent } from './portfolio/components/projects/paper-airplane/paper-airplane.component';
+import { CreditCalculatorComponent } from './portfolio/components/projects/credit-calculator/credit-calculator.component';
+import { BalsaWoodGliderComponent } from './portfolio/components/projects/balsa-wood-glider/balsa-wood-glider.component';
+import { PianoPedalComponent } from './portfolio/components/projects/piano-pedal/piano-pedal.component';
+import { AirfoilAnalysisComponent } from './portfolio/components/projects/airfoil-analysis/airfoil-analysis.component';
 import { ProjectBoxComponent } from './shared/components/project-box/project-box.component';
-import { KeplerComponent } from './kepler/kepler.component';
+import { KeplerComponent } from './portfolio/components/projects/kepler/kepler.component';
 
 @NgModule({
   declarations: [
