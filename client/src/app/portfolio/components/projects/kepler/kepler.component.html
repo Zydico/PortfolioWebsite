@@ -5,26 +5,31 @@
         Kepler Simulation
     </div>
     <div class="date">
-        January 11, 2023 - January 13, 2023
+        January 11, 2023 - Current (WIP)
     </div>
     <div class="description">
-        A very simple simulation of Kepler's laws in action for objects of unknown masses and random semi-major/semi-minor axis. 
-        Set the variables and click on the "update simulation" button. 
+        This is with the assumption that the time of periapsis passage is 0 seconds and the mass of the satellite is insignificant compared to the central body.
     </div>
     <br>
     <div class="formContainer">
         <form [formGroup]="variables" (ngSubmit)="onSubmit()">
             <div class="formField">
-                <label for="planets">Planets:</label>
-                <input id="planets" type="text" formControlName="planets">
+                <label for="a">Semi-major axis (m)</label>
+                <input id="a" type="text" formControlName="a">
+                <div *ngIf="variables.controls['a'].errors?.min" class="error">Minimum number is {{min_a}}</div>
+                <div *ngIf="variables.controls['a'].errors?.max" class="error">Maximum number is {{max_a}}</div>
             </div>
             <div class="formField">
-                <label for="ratio">Major/Minor axis ratio</label>
+                <label for="ratio">Semi-minor axis ratio</label>
                 <input id="ratio" type="text" formControlName="ratio">
+                <div *ngIf="variables.controls['ratio'].errors?.min" class="error">Minimum number is {{min_ratio}}</div>
+                <div *ngIf="variables.controls['ratio'].errors?.max" class="error">Minimum number is {{max_ratio}}</div>
             </div>
             <div class="formField">
-                <label for="apt">Area per tick</label>
-                <input id="apt" type="text" formControlName="ratio">
+                <label for="mass">Sun mass (kg)</label>
+                <input id="mass" type="text" formControlName="mass">
+                <div *ngIf="variables.controls['mass'].errors?.min" class="error">Minimum number is {{min_mass}}</div>
+                <div *ngIf="variables.controls['mass'].errors?.max" class="error">Minimum number is {{max_mass}}</div>
             </div>
             <div class="formButton">
                 <button class="button" type="submit">Update Simulation</button>

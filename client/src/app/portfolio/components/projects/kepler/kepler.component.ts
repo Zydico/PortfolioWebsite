@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { LoaderService } from '../../../../shared/services/loader/loader.service';
 import { Orbit } from './orbit';
 import { Planet } from './planet';
@@ -15,15 +15,23 @@ export class KeplerComponent implements OnInit {
   ctx: CanvasRenderingContext2D;
   width: number = 0;
   height: number = 0;
-  orbits: Orbit[] = [];
-  planets: Planet[] = [];
-  currentRatio: number = 1.25;
-  currentApt: number = 1;
+  min_a: number = 1;
+  max_a: number = 3;
+  pixel_multiplier = 100;
+  min_ratio: number = 0.5;
+  max_ratio: number = 0.8;
+  min_mass: number = 1;
+  max_mass: number = 2;
+  a: number = this.min_a;
+  ratio: number;
+  mass: number;
+  time: string = '0.00';
+  G: number = 6.6743 * 10 ** -11;
 
   variables = this.formBuilder.group({
-    planets: 1,
-    ratio: 1.25,
-    apt: 1,
+    a: [(this.min_a + this.max_a) / 2, {validators: [Validators.min(this.min_a), Validators.max(this.max_a)]}],
+    ratio: [(this.min_ratio + this.max_ratio) / 2, {validators: [Validators.min(this.min_ratio), Validators.max(this.max_ratio)]}],
+    mass: [(this.min_mass + this.max_mass) / 2, {validators: [Validators.min(this.min_mass), Validators.max(this.max_mass)]}],
   });
 
   constructor(public loader: LoaderService, private formBuilder: FormBuilder) { }
@@ -41,117 +49,95 @@ export class KeplerComponent implements OnInit {
   }
 
   onSubmit(): void {
-
-    let newRatio = this.variables.get('ratio');
-    if (newRatio.value < 1) {
-      newRatio.setValue(1);
-    } else if (newRatio.value > 2) {
-      newRatio.setValue(2);
-    }
-    
-    let newPlanets = this.variables.get('planets');
-    if (newPlanets.value < 1) {
-      newPlanets.setValue(1);
-    } else if (newPlanets.value > 10) {
-      newPlanets.setValue(10);
-    }
-    
-    this.orbits = [];
-    this.planets = [];
-    this.currentRatio = Number(this.variables.get('ratio').value);
-    this.currentApt = Number(this.variables.get('apt').value);
-    let lastMajor = 0;
-    let lastMinor = 0;
-    for (let i = 0; i < this.getField('planets'); i++) {
-      let orbit = {} as Orbit;
-      let r = this.getRandomInt(50, 255);
-      let g = this.getRandomInt(50, 255);
-      let b = this.getRandomInt(50, 255);
-      orbit.color = `rgb(${r}, ${g}, ${b})`;
-      if (i == 0) {
-        orbit.gap = 30;
-      } else {
-        orbit.gap = this.getRandomInt(30, 60);
-      }
-      lastMinor = lastMinor + orbit.gap;
-      lastMajor = lastMinor * this.currentRatio;
-      orbit.major = lastMajor;
-      orbit.minor = lastMinor;
-      this.orbits.push(orbit);
-
-      let planet = {} as Planet;
-      planet.color = orbit.color;
-      this.planets.push(planet);
-    }
+    this.a = this.getValue('a');
+    this.ratio = this.getValue('ratio');
+    this.time = '0.00';
+    this.mass = this.getValue('mass');
   }
 
   getRadian(x, y) {
-    console.log(Math.atan2(y,x));
-    console.log(Math.atan2(y,x));
     return Math.atan2(y, x);
-  }
-
-  getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-  }
-
-  getRandomDecimal(min, max) {
-    return Math.random() * (max - min) + min;
   }
 
   draw(): void {
     let ctx = this.ctx;
     let canvas = this.canvas;
     ctx.clearRect(-this.width * 3, -this.height * 3, this.width * 6, this.height * 6);
-    let centerX = canvas.width / 2;
-    let centerY = canvas.height / 2;
+    let center_x = canvas.width / 2;
+    let center_y = canvas.height / 2;
+
+    let a = this.a;
+    let a_canvas = a * this.pixel_multiplier;
+    let ratio = this.ratio;
+    let b_canvas = a_canvas * ratio;
+    let b = a * ratio;
+    let orbit_center_x = center_x;
+    ctx.strokeStyle = 'rgb(250, 250, 250)'
+    ctx.beginPath();
+    ctx.ellipse(orbit_center_x, center_y, a_canvas, b_canvas, 0, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.closePath();
+
     let sunRadius = 4;
     ctx.fillStyle = 'rgb(253, 184, 19)';
     ctx.beginPath();
-    let sunX = centerX - centerX / 3;
-    let sunY = centerY;
-    ctx.arc(sunX, sunY, sunRadius, 0, Math.PI * 2);
+    let sun_x = orbit_center_x + Math.sqrt(this.square(a) - this.square(b));
+    ctx.arc(sun_x, center_y, sunRadius, 0, Math.PI * 2);
     ctx.fill();
     ctx.closePath();
-    for (let i = 0; i < this.orbits.length; i++) {
-      let orbit: Orbit = this.orbits[i];
-      let planet: Planet = this.planets[i];
-      orbit.centerX = sunX + Math.sqrt(this.square(orbit.major) - this.square(orbit.minor));
-      orbit.centerY = sunY;
-      ctx.strokeStyle = orbit.color;
-      ctx.beginPath();
-      ctx.ellipse(orbit.centerX, orbit.centerY, orbit.major, orbit.minor, 0, 0, 2 * Math.PI);
-      ctx.stroke();
-      ctx.closePath();
 
-      if (!planet.x) {
-        let x = this.getRandomDecimal(-orbit.major, orbit.major);
-        let y = Math.sqrt(this.square(orbit.minor) - this.square(orbit.minor)*this.square(x)/(this.square(orbit.major)));
-        let sign = this.getRandomInt(1, 3);
-        if (sign == 2) {
-          y = y * -1;
-        }
-        planet.x = orbit.centerX + x;
-        planet.y = orbit.centerY + y;
-      }
-      ctx.fillStyle = orbit.color;
-      ctx.beginPath();
-      ctx.arc(planet.x, planet.y, 3, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.closePath();
-    }
+    let mu = this.G * this.mass;
+    let n = Math.sqrt(mu / Math.pow(a, 3));
+    let M = n * Number(this.time);
+
+    ctx.font = "12px Courier New";
+    ctx.fillStyle = 'rgb(250, 250, 250)'
+    ctx.fillText('t: ' + this.time + ' s', 10, 20);
+    ctx.fillText('a: ' + a + ' m', 10, 40);
+    ctx.fillText('b: ' + a * ratio + ' m', 10, 60);
+    ctx.fillText('M: ' + M.toFixed(10) + ' rad' + ' / ' + Number(Number(M.toFixed(10)) * 180 / Math.PI).toFixed(10) + ' deg', 100, 20);
+
+
+    // for (let i = 0; i < this.orbits.length; i++) {
+    //   let orbit: Orbit = this.orbits[i];
+    //   let planet: Planet = this.planets[i];
+    //   orbit.centerX = sunX + Math.sqrt(this.square(orbit.major) - this.square(orbit.minor));
+    //   orbit.centerY = sunY;
+    //   ctx.strokeStyle = orbit.color;
+    //   ctx.beginPath();
+    //   ctx.ellipse(orbit.centerX, orbit.centerY, orbit.major, orbit.minor, 0, 0, 2 * Math.PI);
+    //   ctx.stroke();
+    //   ctx.closePath();
+
+    //   if (!planet.x) {
+    //     let x = this.getRandomDecimal(-orbit.major, orbit.major);
+    //     let y = Math.sqrt(this.square(orbit.minor) - this.square(orbit.minor)*this.square(x)/(this.square(orbit.major)));
+    //     let sign = this.getRandomInt(1, 3);
+    //     if (sign == 2) {
+    //       y = y * -1;
+    //     }
+    //     planet.x = orbit.centerX + x;
+    //     planet.y = orbit.centerY + y;
+    //   }
+    //   ctx.fillStyle = orbit.color;
+    //   ctx.beginPath();
+    //   ctx.arc(planet.x, planet.y, 3, 0, Math.PI * 2);
+    //   ctx.fill();
+    //   ctx.closePath();
+    // }
   }
 
   square(num) {
     return Math.pow(num, 2);
   }
 
-  getField(field) {
-    return Number(this.variables.get(field).value);
+  getValue(name) {
+    return Number(this.variables.controls[name].value);
   }
 
   loop(): void {
     this.draw();
+    this.time = Number((Number(this.time) + (1000 / 60 / 1000))).toFixed(2);
     window.requestAnimationFrame(() => this.loop());
   }
 
