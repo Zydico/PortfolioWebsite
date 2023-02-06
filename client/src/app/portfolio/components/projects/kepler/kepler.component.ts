@@ -124,7 +124,6 @@ export class KeplerComponent implements OnInit {
     ctx.fillStyle = 'rgb(255,255,0)';
     ctx.arc(eccentric_anomaly_x, eccentric_anomaly_y, anomalyRadius, 0, Math.PI * 2);
     ctx.fill();
-    ctx.closePath();
     
     // Eccentric Anomaly Line
     ctx.beginPath();
@@ -139,7 +138,6 @@ export class KeplerComponent implements OnInit {
     ctx.moveTo(eccentric_anomaly_x, eccentric_anomaly_y);
     ctx.lineTo(planet_x, planet_y);
     ctx.stroke();
-    ctx.closePath();
 
     // Eccentric Anomaly Angle
     ctx.beginPath();
@@ -147,7 +145,6 @@ export class KeplerComponent implements OnInit {
     ctx.stroke();
     ctx.font = "12px Courier New";
     ctx.fillText('E', center_x + 20, center_y - 20);
-    ctx.closePath();
 
     // Mean Anomaly Circle
     let mean_anomaly_x = center_x + a_canvas * Math.cos(M);
@@ -156,7 +153,6 @@ export class KeplerComponent implements OnInit {
     ctx.fillStyle = 'rgb(255,0,0)';
     ctx.arc(mean_anomaly_x, mean_anomaly_y, anomalyRadius, 0, Math.PI * 2);
     ctx.fill();
-    ctx.closePath();
     
     // Mean Anomaly Line
     ctx.beginPath();
@@ -164,17 +160,13 @@ export class KeplerComponent implements OnInit {
     ctx.moveTo(center_x, center_y);
     ctx.lineTo(mean_anomaly_x, mean_anomaly_y);
     ctx.stroke();
-    ctx.closePath();
 
     // Mean Anomaly Angle
     ctx.beginPath();
     ctx.arc(center_x, center_y, 10, 0, -M, true);
     ctx.stroke();
-    ctx.font = "12px Courier New";
     ctx.fillText('M', center_x + 10, center_y - 10);
-    ctx.closePath();
 
-    
     // rp
     ctx.beginPath();
     ctx.strokeStyle = 'rgb(255, 204, 203)'
@@ -182,11 +174,9 @@ export class KeplerComponent implements OnInit {
     ctx.moveTo(sun_x, center_y);
     ctx.lineTo(sun_x + rp * this.AU * this.scale, center_y);
     ctx.stroke();
-    ctx.font = "12px Courier New";
     ctx.fillText('r', sun_x + rp * this.AU * this.scale / 2, center_y + 10);
     ctx.font = "10px Courier New";
     ctx.fillText('p', sun_x + rp * this.AU * this.scale / 2 + 6, center_y + 12);
-    ctx.closePath();
 
     // ra
     ctx.beginPath();
@@ -199,7 +189,6 @@ export class KeplerComponent implements OnInit {
     ctx.fillText('r', sun_x - ra * this.AU * this.scale / 2, center_y + 10);
     ctx.font = "10px Courier New";
     ctx.fillText('a', sun_x - ra * this.AU * this.scale / 2 + 6, center_y + 12);
-    ctx.closePath();
 
     // r
     ctx.beginPath();
@@ -210,7 +199,6 @@ export class KeplerComponent implements OnInit {
     ctx.stroke();
     ctx.font = "12px Courier New";
     ctx.fillText('r', (sun_x + planet_x)/2, (center_y + planet_y)/2);
-    ctx.closePath();
     
     // True Anomaly Angle
     ctx.beginPath();
@@ -218,7 +206,6 @@ export class KeplerComponent implements OnInit {
     ctx.stroke();
     ctx.font = "12px Courier New";
     ctx.fillText('f', sun_x + 10, center_y - 10);
-    ctx.closePath();
 
     // sun
     ctx.beginPath();
@@ -226,7 +213,6 @@ export class KeplerComponent implements OnInit {
     ctx.fillStyle = 'rgb(253, 184, 19)';
     ctx.arc(sun_x, center_y, sunRadius, 0, Math.PI * 2);
     ctx.fill();
-    ctx.closePath();
     
     // planet
     let planetRadius = 4;
@@ -234,7 +220,6 @@ export class KeplerComponent implements OnInit {
     ctx.fillStyle = 'rgb(230,230,250)';
     ctx.arc(planet_x, planet_y, planetRadius, 0, Math.PI * 2);
     ctx.fill();
-    ctx.closePath();
 
     // texts
     ctx.font = "12px Courier New";
