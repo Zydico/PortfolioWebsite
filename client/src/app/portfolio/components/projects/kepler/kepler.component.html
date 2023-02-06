@@ -2,40 +2,41 @@
 <div id="back-button" (click)="loader.changePage('portfolio/web-apps')">Back</div>
 <div class="container">
     <div class="header">
-        Kepler Simulation
+        2D Keplerian Orbit Simulation
     </div>
     <div class="date">
-        January 11, 2023 - Current (WIP)
-    </div>
-    <div class="description">
-        This is with the assumption that the time of periapsis passage is 0 seconds and the mass of the satellite is insignificant compared to the central body.
+        January 11, 2023 - February 6, 2023
     </div>
     <br>
+    <canvas class="simulation" id="simulation"></canvas>
+    <br><br>
     <div class="formContainer">
-        <form [formGroup]="variables" (ngSubmit)="onSubmit()">
+        <form [formGroup]="variables" (ngSubmit)="onSubmit()" #form>
             <div class="formField">
-                <label for="a">Semi-major axis (m)</label>
+                <label for="a">Semi-major axis (AU)</label>
                 <input id="a" type="text" formControlName="a">
-                <div *ngIf="variables.controls['a'].errors?.min" class="error">Minimum number is {{min_a}}</div>
+                <div *ngIf="variables.controls['a'].errors?.min || variables.controls['a'].errors?.required" class="error">Minimum number is {{min_a}}</div>
                 <div *ngIf="variables.controls['a'].errors?.max" class="error">Maximum number is {{max_a}}</div>
             </div>
             <div class="formField">
-                <label for="ratio">Semi-minor axis ratio</label>
-                <input id="ratio" type="text" formControlName="ratio">
-                <div *ngIf="variables.controls['ratio'].errors?.min" class="error">Minimum number is {{min_ratio}}</div>
-                <div *ngIf="variables.controls['ratio'].errors?.max" class="error">Minimum number is {{max_ratio}}</div>
+                <label for="eccentricity">Eccentricity</label>
+                <input id="eccentricity" type="text" formControlName="eccentricity">
+                <div *ngIf="variables.controls['eccentricity'].errors?.min || variables.controls['eccentricity'].errors?.required" class="error">Minimum number is {{min_eccentricity}}</div>
+                <div *ngIf="variables.controls['eccentricity'].errors?.max" class="error">Maximum number is {{max_eccentricity}}</div>
             </div>
             <div class="formField">
-                <label for="mass">Sun mass (kg)</label>
-                <input id="mass" type="text" formControlName="mass">
-                <div *ngIf="variables.controls['mass'].errors?.min" class="error">Minimum number is {{min_mass}}</div>
-                <div *ngIf="variables.controls['mass'].errors?.max" class="error">Minimum number is {{max_mass}}</div>
+                <label for="speed">Speed</label>
+                <input id="speed" type="text" formControlName="speed">
+                <div *ngIf="variables.controls['speed'].errors?.min || variables.controls['speed'].errors?.required" class="error">Minimum number is {{min_speed}}</div>
+                <div *ngIf="variables.controls['speed'].errors?.max" class="error">Maximum number is {{max_speed}}</div>
             </div>
             <div class="formButton">
                 <button class="button" type="submit">Update Simulation</button>
             </div>
         </form>
     </div>
-    <br>
-    <canvas class="simulation" id="simulation"></canvas>
+    <div class="description">
+        A 2D simulation of a Keplerian Orbit showcasing the 2 Body Problem with all the important variables. This is with the assumption that the time of periapsis passage is 0 seconds and the mass of the satellite is insignificant compared to the central body. The mass of the
+        sun is assumed to be 1.989e+30 kg. 1 AU is assumed to be 149,598,000 km.
+    </div>
 </div>

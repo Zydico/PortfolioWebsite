@@ -83,7 +83,7 @@ img {
     border-radius: 2px;
     border-color: rgb(17, 17, 17);
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 1/1;
     position: relative;
 }
 
@@ -98,13 +98,13 @@ label {
 }
 
 input {
-    width: 3rem;
+    width: 5rem;
     font-size: 0.9rem;
 }
 
 .formField {
     display: inline-block;
-    margin-right: 3rem;
+    margin-right: 2.5rem;
 }
 
 .formButton {
