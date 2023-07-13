@@ -26,6 +26,8 @@ import { PianoPedalComponent } from './portfolio/components/projects/piano-pedal
 import { AirfoilAnalysisComponent } from './portfolio/components/projects/airfoil-analysis/airfoil-analysis.component';
 import { ProjectBoxComponent } from './shared/components/project-box/project-box.component';
 import { KeplerComponent } from './portfolio/components/projects/kepler/kepler.component';
+import { ProjectsResearchComponent } from './portfolio/components/projects-research/projects-research.component';
+import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { KeplerComponent } from './portfolio/components/projects/kepler/kepler.c
     AirfoilAnalysisComponent,
     ProjectBoxComponent,
     KeplerComponent,
+    ProjectsResearchComponent,
+    Cr3bpComponent,
   ],
   imports: [
     BrowserModule,

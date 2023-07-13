@@ -11,6 +11,8 @@ import { BalsaWoodGliderComponent } from './portfolio/components/projects/balsa-
 import { PianoPedalComponent } from './portfolio/components/projects/piano-pedal/piano-pedal.component';
 import { AirfoilAnalysisComponent } from './portfolio/components/projects/airfoil-analysis/airfoil-analysis.component';
 import { KeplerComponent } from './portfolio/components/projects/kepler/kepler.component';
+import { ProjectsResearchComponent } from './portfolio/components/projects-research/projects-research.component';
+import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portfolio', pathMatch: 'full' },
@@ -20,7 +22,8 @@ const routes: Routes = [
     children: [
       { path: '', component: ProjectsHomeComponent },
       { path: 'web-apps', component: ProjectsWebAppsComponent },
-      { path: 'school', component: ProjectsSchoolComponent }
+      { path: 'school', component: ProjectsSchoolComponent },
+      { path: 'research', component: ProjectsResearchComponent },
     ]
   },
   // Web Apps
@@ -33,6 +36,9 @@ const routes: Routes = [
   { path: 'balsa-wood-glider', component: BalsaWoodGliderComponent },
   { path: 'piano-pedal', component: PianoPedalComponent },
   { path: 'airfoil-analysis', component: AirfoilAnalysisComponent },
+
+  // Research
+  { path: 'cr3bp', component: Cr3bpComponent },
 
   // Default Redirect
   { path: '**', redirectTo: '/portfolio', pathMatch: 'full' }

@@ -13,11 +13,11 @@
     background-color: rgb(18, 126, 18);
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
-    margin-left: 1rem;
     user-select: none;
     cursor: pointer;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
 }
 
 #sort-button:hover, #sort-mode-button:hover {
@@ -101,6 +101,7 @@
 canvas {
     background-color: white;
     width: 100%;
+    margin-top: 1rem;
 }
 
 .disabled {
@@ -153,8 +154,14 @@ label {
 
 #back-button {
     background-color: $darkBlue;
+    margin-top: 3rem;
 }
 
 #back-button:hover {
     background-color: $lightBlue;
 }
+
+#container {
+    margin-top: 2rem;
+}
+

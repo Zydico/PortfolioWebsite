@@ -222,6 +222,15 @@ export class KeplerComponent implements OnInit {
     ctx.fill();
 
     // texts
+    let fText = f;
+    if (f < 0) {
+      fText = 2 * Math.PI + f;
+    }
+
+    if (Number(this.time) > period) {
+      this.time = String(Number(this.time) - period);
+    }
+
     ctx.font = "12px Courier New";
     ctx.fillStyle = 'rgb(250, 250, 250)'
     ctx.fillText('Speed: ' + this.speed + 'x', 10, 20);
@@ -233,9 +242,9 @@ export class KeplerComponent implements OnInit {
     ctx.fillText('e: ' + e, 10, 140);
     ctx.fillText('M: ' + M.toFixed(this.rad_decimals) + ' rad' + ' / ' + Number(Number(M.toFixed(this.rad_decimals)) * 180 / Math.PI).toFixed(this.rad_decimals) + ' deg', 180, 20);
     ctx.fillText('E: ' + Ek.toFixed(this.rad_decimals) + ' rad' + ' / ' + Number(Number(Ek.toFixed(this.rad_decimals)) * 180 / Math.PI).toFixed(this.rad_decimals) + ' deg', 180, 40);
-    ctx.fillText('f: ' + f.toFixed(this.rad_decimals) + ' rad' + ' / ' + Number(Number(f.toFixed(this.rad_decimals)) * 180 / Math.PI).toFixed(this.rad_decimals) + ' deg', 180, 60);
+    ctx.fillText('f: ' + fText.toFixed(this.rad_decimals) + ' rad' + ' / ' + Number(Number(fText.toFixed(this.rad_decimals)) * 180 / Math.PI).toFixed(this.rad_decimals) + ' deg', 180, 60);
 
-    ctx.fillText('t: Elapsed Time', 10, this.height - 220);
+    ctx.fillText('t: Time of Flight', 10, this.height - 220);
     ctx.fillText('T: Period', 10, this.height - 200);
     ctx.fillText('a: Semi-major Axis', 10, this.height - 180);
     ctx.fillText('b: Semi-minor Axis', 10, this.height - 160);

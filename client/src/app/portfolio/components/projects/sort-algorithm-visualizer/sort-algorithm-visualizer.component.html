@@ -1,11 +1,11 @@
 <div id="header">
     <div id="sort-button" [ngClass]="{'disabled': !enabled}" (click)="sort()">Sort</div>
     <div class="slider-container">
-        <div class="slider-label"># of elements</div>
+        <div class="slider-label">elements</div>
         <input [disabled]="!enabled" type="range" min="10" max="100" value="20" id="slider" (input)="sliderChanged($event)"> 
     </div>
     <div class="slider-container">
-        <div class="slider-label">sort speed</div>
+        <div class="slider-label">speed</div>
         <input type="range" min="5" max="1000" value="100" id="slider" (input)="speedChanged($event)"> 
     </div>
     <div id="reset-button" [ngClass]="{'disabled': !enabled}" (click)="generateNewGraph()">Reset</div>
@@ -26,7 +26,9 @@
 </div>
 <div id="graph-container">
     <div id="back-button" (click)="goBack()">Back</div>
-    <input type="checkbox" id="iterations-only" name="iterations-only" [(ngModel)]="iterationsOnly">
-    <label for="iterations-only">Iterations Only</label>
-    <canvas id="canvas"></canvas>
+    <div id="container">
+        <input type="checkbox" id="iterations-only" name="iterations-only" [(ngModel)]="iterationsOnly">
+        <label for="iterations-only">Iterations Only</label>
+        <canvas id="canvas"></canvas>
+    </div>
 </div>
