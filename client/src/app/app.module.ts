@@ -28,6 +28,7 @@ import { ProjectBoxComponent } from './shared/components/project-box/project-box
 import { KeplerComponent } from './portfolio/components/projects/kepler/kepler.component';
 import { ProjectsResearchComponent } from './portfolio/components/projects-research/projects-research.component';
 import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.component';
+import { SdaComponent } from './portfolio/components/projects/sda/sda.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.comp
     KeplerComponent,
     ProjectsResearchComponent,
     Cr3bpComponent,
+    SdaComponent,
   ],
   imports: [
     BrowserModule,

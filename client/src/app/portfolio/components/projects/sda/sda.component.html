@@ -1,11 +1,8 @@
 <div id="background"></div>
 <div id="back-button" (click)="loader.changePage('portfolio/research')">Back</div>
-
 <div style="text-align:center;">
     <div id="canvas-wrapper">
         <canvas id="c"></canvas>
     </div>
 </div>
-
-<input type="button" id="saveButton" value="Convert to PDF" onclick="save()">
-<div id="downloadSvg"></div>
+<input type="button" id="saveButton" value="Convert to SVG" (click)="save()">
