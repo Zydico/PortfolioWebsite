@@ -29,6 +29,7 @@ import { KeplerComponent } from './portfolio/components/projects/kepler/kepler.c
 import { ProjectsResearchComponent } from './portfolio/components/projects-research/projects-research.component';
 import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.component';
 import { SdaComponent } from './portfolio/components/projects/sda/sda.component';
+import { SatellitesComponent } from './portfolio/components/projects/satellites/satellites.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SdaComponent } from './portfolio/components/projects/sda/sda.component'
     ProjectsResearchComponent,
     Cr3bpComponent,
     SdaComponent,
+    SatellitesComponent,
   ],
   imports: [
     BrowserModule,

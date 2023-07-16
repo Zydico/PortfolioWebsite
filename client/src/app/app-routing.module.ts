@@ -14,6 +14,7 @@ import { KeplerComponent } from './portfolio/components/projects/kepler/kepler.c
 import { ProjectsResearchComponent } from './portfolio/components/projects-research/projects-research.component';
 import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.component';
 import { SdaComponent } from './portfolio/components/projects/sda/sda.component';
+import { SatellitesComponent } from './portfolio/components/projects/satellites/satellites.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portfolio', pathMatch: 'full' },
@@ -41,6 +42,7 @@ const routes: Routes = [
   // Research
   { path: 'cr3bp', component: Cr3bpComponent },
   { path: 'sda', component: SdaComponent },
+  { path: 'satellites', component: SatellitesComponent },
 
   // Default Redirect
   { path: '**', redirectTo: '/portfolio', pathMatch: 'full' }
