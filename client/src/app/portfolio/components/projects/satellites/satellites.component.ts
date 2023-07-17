@@ -40,12 +40,28 @@ export class SatellitesComponent implements OnInit {
     let lines = this.lines;
     let ref = this;
     canvas.on('object:moving', function() {
+      update(ref);
+    });
+    canvas.on('object:scaling', function() {
+      update(ref);
+    });
+    canvas.on('object:resizing', function() {
+      update(ref);
+    });
+    canvas.on('object:rotating', function() {
+      update(ref);
+    });
+    canvas.on('object:skewing', function() {
+      update(ref);
+    });
+
+    function update(ref) {
       ref.updateLine(lines[0], ref.satellites[0], ref.space_satellites[0], ref);
       ref.updateLine(lines[1], ref.space_satellites[0], ref.space_satellites[1], ref);
       ref.updateLine(lines[2], ref.space_satellites[1], ref.space_satellites[2], ref);
       ref.updateLine(lines[3], ref.space_satellites[2], ref.space_satellites[3], ref);
       ref.updateLine(lines[4], ref.satellites[1], ref.space_satellites[3], ref);
-    });
+    }
 
     this.draw();
   }
