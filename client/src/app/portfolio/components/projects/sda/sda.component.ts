@@ -10,11 +10,11 @@ import { fabric } from 'fabric';
 export class SdaComponent implements OnInit {
 
   private canvas;
-  private axis_size = 200;
-  private margins = 10;
+  private axis_size = 130;
+  private margins = 0;
   private center_X;
   private center_Y;
-  private origin_offset = [-30, 30];
+  private origin_offset = [-100, 70];
   private axis_line_width = 1.9;
   private line_dash = 2.5;
   private arrow_length = 10;
@@ -39,24 +39,24 @@ export class SdaComponent implements OnInit {
   }
 
   draw(): void {
-    this.drawLine(0, 0, this.axis_size, 0, 'black', this.axis_line_width, true, true);
-    this.drawLine(0, 0, 0, this.axis_size, 'black', this.axis_line_width, true, true);
-    this.drawLine(0, 0, -this.axis_size * Math.cos(Math.PI/4), -this.axis_size * Math.cos(Math.PI/4), 'black', this.axis_line_width, true, true);
+    // this.drawLine(0, 0, this.axis_size, 0, 'black', this.axis_line_width, true, true);
+    // this.drawLine(0, 0, 0, this.axis_size, 'black', this.axis_line_width, true, true);
+    // this.drawLine(0, 0, -this.axis_size * Math.cos(Math.PI/4), -this.axis_size * Math.cos(Math.PI/4), 'black', this.axis_line_width, true, true);
+    this.drawLine(130, 110, 130, 50, 'black', 0.75, false, false);
     this.drawPoint(130, 50, '#B6B6B6', 30);
     this.drawPoint(0, 0, 'black', 4);
     this.drawPoint(130, 150, 'black', 4);
     this.drawLine(0, 0, 130, 50, 'black', 0.75, false, true);
     this.drawLine(0, 0, 128, 148, 'black', 0.75, false, true);
     this.drawLine(0, 0, 130, 110, 'black', 0.75, false, true);
-    this.drawLine(130, 150, 130, 110, 'black', 0.75, false, false);
     let angle_1 = Math.atan(50/130)*180/Math.PI;
     let angle_2 = Math.atan(110/130)*180/Math.PI;
     let angle_3 = Math.atan(148/128)*180/Math.PI;
     this.drawArc(0, 0, 80, angle_1, angle_3, '#FF0000');
     this.drawArc(0, 0, 100, angle_1, angle_2, '#7279FF');
-    this.createText('X̂', 212, 0, 'black', false, true);
-    this.createText('Ŷ', 0, 215, 'black', false, true);
-    this.createText('Ẑ', -155, -155, 'black', false, true);
+    // this.createText('X̂', 212, 0, 'black', false, true);
+    // this.createText('Ŷ', 0, 215, 'black', false, true);
+    // this.createText('Ẑ', -155, -155, 'black', false, true);
     this.createText('Observer', 35, -15, 'black', false, false);
     this.createText('Moon', 190, 50, 'black', false, false);
     this.createText('Target', 170, 150, 'black', false, false);
@@ -154,6 +154,7 @@ export class SdaComponent implements OnInit {
         originY: 'center',
         startAngle: -endAngle,
         endAngle: -startAngle,
+        selectable: false,
     });
     arc.startAngle = -endAngle + 3;
     this.canvas.add(arc);
