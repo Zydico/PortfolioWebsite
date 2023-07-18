@@ -30,6 +30,7 @@ import { ProjectsResearchComponent } from './portfolio/components/projects-resea
 import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.component';
 import { SdaComponent } from './portfolio/components/projects/sda/sda.component';
 import { SatellitesComponent } from './portfolio/components/projects/satellites/satellites.component';
+import { FovComponent } from './portfolio/components/projects/fov/fov.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { SatellitesComponent } from './portfolio/components/projects/satellites/
     Cr3bpComponent,
     SdaComponent,
     SatellitesComponent,
+    FovComponent,
   ],
   imports: [
     BrowserModule,

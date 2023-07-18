@@ -15,6 +15,7 @@ import { ProjectsResearchComponent } from './portfolio/components/projects-resea
 import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.component';
 import { SdaComponent } from './portfolio/components/projects/sda/sda.component';
 import { SatellitesComponent } from './portfolio/components/projects/satellites/satellites.component';
+import { FovComponent } from './portfolio/components/projects/fov/fov.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portfolio', pathMatch: 'full' },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'cr3bp', component: Cr3bpComponent },
   { path: 'sda', component: SdaComponent },
   { path: 'satellites', component: SatellitesComponent },
+  { path: 'fov', component: FovComponent },
 
   // Default Redirect
   { path: '**', redirectTo: '/portfolio', pathMatch: 'full' }
