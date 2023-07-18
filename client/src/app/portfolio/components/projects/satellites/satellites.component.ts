@@ -14,6 +14,8 @@ export class SatellitesComponent implements OnInit {
   private font_size = 20;
   private space_satellites = [];
   private satellites = [];
+  private boats = [];
+  private planes = [];
   private lines = [];
 
   constructor(public loader: LoaderService) { }
@@ -61,6 +63,10 @@ export class SatellitesComponent implements OnInit {
       ref.updateLine(lines[2], ref.space_satellites[1], ref.space_satellites[2], ref);
       ref.updateLine(lines[3], ref.space_satellites[2], ref.space_satellites[3], ref);
       ref.updateLine(lines[4], ref.satellites[1], ref.space_satellites[3], ref);
+      ref.updateLine(lines[5], ref.space_satellites[0], ref.space_satellites[2], ref);
+      ref.updateLine(lines[6], ref.space_satellites[1], ref.space_satellites[3], ref);
+      ref.updateLine(lines[7], ref.boats[0], ref.space_satellites[1], ref);
+      ref.updateLine(lines[8], ref.planes[0], ref.space_satellites[1], ref);
     }
 
     this.draw();
@@ -68,16 +74,22 @@ export class SatellitesComponent implements OnInit {
 
   draw(): void {
     this.createSpaceSatellite(200, 150, -160);
-    this.createSpaceSatellite(400, 100, -180);
-    this.createSpaceSatellite(580, 200, 170);
+    this.createSpaceSatellite(400, 250, -180);
+    this.createSpaceSatellite(580, 100, 170);
     this.createSpaceSatellite(800, 140, 160);
     this.createSatellite(100, 500, false);
     this.createSatellite(900, 500, true);
-    this.createLine(this.satellites[0], this.space_satellites[0]);
-    this.createLine(this.space_satellites[0], this.space_satellites[1]);
-    this.createLine(this.space_satellites[1], this.space_satellites[2]);
-    this.createLine(this.space_satellites[2], this.space_satellites[3]);
-    this.createLine(this.satellites[1], this.space_satellites[3]);
+    this.createBoat(300, 490);
+    this.createPlane(600, 390);
+    this.createLine(this.satellites[0], this.space_satellites[0], '#E91E1C');
+    this.createLine(this.space_satellites[0], this.space_satellites[1], '#29DE03');
+    this.createLine(this.space_satellites[1], this.space_satellites[2], '#29DE03');
+    this.createLine(this.space_satellites[2], this.space_satellites[3], '#29DE03');
+    this.createLine(this.satellites[1], this.space_satellites[3], '#E91E1C');
+    this.createLine(this.space_satellites[0], this.space_satellites[2], '#29DE03');
+    this.createLine(this.space_satellites[1], this.space_satellites[3], '#29DE03');
+    this.createLine(this.boats[0], this.space_satellites[1], '#E91E1C');
+    this.createLine(this.planes[0], this.space_satellites[1], '#E91E1C');
   }
 
   updateLine(line, object_1, object_2, ref): void {
@@ -94,6 +106,181 @@ export class SatellitesComponent implements OnInit {
   }
 
   // Helper Functions
+
+  createPlane(x, y): void {
+    let base = new fabric.Ellipse({
+      rx: 8,
+      ry: 10,
+      left: 0,
+      top: 0,
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let left = new fabric.Polygon([
+      { x: 0, y: 7 },
+      { x: -60, y: -3 },
+      { x: 0, y: 0 },
+    ], {
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let right = new fabric.Polygon([
+      { x: 0, y: 7 },
+      { x: 60, y: -3 },
+      { x: 0, y: 0 },
+    ], {
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let left_engine = new fabric.Circle({
+      radius: 5,
+      left: -20,
+      top: 5,
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let right_engine = new fabric.Circle({
+      radius: 5,
+      left: 20,
+      top: 5,
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let left_tail = new fabric.Polygon([
+      { x: 0, y: -5 },
+      { x: -23, y: -9.5 },
+      { x: 0, y: -8 },
+    ], {
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let right_tail = new fabric.Polygon([
+      { x: 0, y: -5 },
+      { x: 23, y: -9.5 },
+      { x: 0, y: -8 },
+    ], {
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let middle_tail = new fabric.Polygon([
+      { x: -1.5, y: -9.5 },
+      { x: 1.5, y: -9.5 },
+      { x: 0, y: -20 },
+    ], {
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let antenna = new fabric.Circle({
+      radius: 0,
+      left: 0,
+      top: -10,
+      fill: '',
+      originX: 'center',
+      originY: 'center',
+      name: 'antenna',
+    });
+
+    let group = new fabric.Group([
+      base, left, right, left_engine, right_engine, left_tail, right_tail, middle_tail, antenna
+    ], {
+      left: x,
+      top: y,
+      originX: 'center',
+      originY: 'center',
+    });
+    group.setControlsVisibility({ 
+      mt: false,
+      mb: false,
+      ml: false,
+      mr: false,
+    });
+
+    this.planes.push(group);
+    this.canvas.add(group);
+  }
+
+  createBoat(x, y): void {
+    let base = new fabric.Polygon([
+      { x: 0, y: 0 },
+      { x: 50, y: 0 },
+      { x: 70, y: -20 },
+      { x: -10, y: -10 },
+    ], {
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let left = new fabric.Polygon([
+      { x: 25, y: -10 },
+      { x: 25, y: -60 },
+      { x: 0, y: -10 },
+    ], {
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let right = new fabric.Polygon([
+      { x: 27, y: -10 },
+      { x: 27, y: -70 },
+      { x: 63, y: -13 },
+    ], {
+      fill: '#28587A',
+      originX: 'center',
+      originY: 'center',
+    });
+
+    let line = new fabric.Line([-10, -8, 70, -19.875], {
+      stroke: 'white',
+      strokeWidth: 2,
+      originX: 'right',
+      originY: 'bottom',
+    });
+
+    let antenna = new fabric.Circle({
+      radius: 5,
+      left: 27,
+      top: -70,
+      fill: '',
+      originX: 'center',
+      originY: 'center',
+      name: 'antenna',
+    });
+
+    let group = new fabric.Group([
+      base, left, right, line, antenna
+    ], {
+      left: x,
+      top: y,
+      originX: 'center',
+      originY: 'center',
+    });
+    group.setControlsVisibility({ 
+      mt: false,
+      mb: false,
+      ml: false,
+      mr: false,
+    });
+    this.canvas.add(group);
+    this.boats.push(group);
+  }
 
   createSpaceSatellite(x, y, angle): void {
     let center_rectangle = new fabric.Rect({
@@ -394,13 +581,13 @@ export class SatellitesComponent implements OnInit {
     return result;
   }
 
-  createLine(object_1, object_2): void {
+  createLine(object_1, object_2, color): void {
     let antenna_1 = object_1.getItemByName('antenna');
     let antenna_2 = object_2.getItemByName('antenna');
     let antenna_1_abs = this.getAbsolutePosition(antenna_1);
     let antenna_2_abs = this.getAbsolutePosition(antenna_2);
     let line = new fabric.Line([antenna_1_abs[0], antenna_1_abs[1], antenna_2_abs[0], antenna_2_abs[1]], {
-      stroke: '#28587A',
+      stroke: color,
       strokeWidth: 1,
       strokeDashArray: [5, 5],
       selectable: false,
