@@ -9,13 +9,14 @@ import { fabric } from 'fabric';
 })
 export class FovComponent implements OnInit {
 
-  private dimensions = [350, 500];
+  private dimensions = [300, 470];
   private canvas;
   private font = "Times New Roman";
   private font_size = 30;
   private radius = 125;
   private angle = 130;
   private point_size = 10;
+  private offset = [20, 107];
 
   constructor(public loader: LoaderService) { }
 
@@ -42,8 +43,8 @@ export class FovComponent implements OnInit {
   }
 
   draw(): void {
-    let circle_x = 200;
-    let circle_y = 350;
+    let circle_x = this.dimensions[0]/2 + this.offset[0];
+    let circle_y = this.dimensions[1]/2 + this.offset[1];
     this.createCircle(circle_x, circle_y);
     this.createTriangle(circle_x, circle_y);
   }
@@ -127,7 +128,7 @@ export class FovComponent implements OnInit {
     let label_2 = new fabric.Text('εmin', {
       fontFamily: this.font,
       fontSize: this.font_size,
-      left: 100,
+      left: 70,
       top: 200,
       originX: 'center',
       originY: 'center',
@@ -141,7 +142,7 @@ export class FovComponent implements OnInit {
     let label_3 = new fabric.Text('FOV', {
       fontFamily: this.font,
       fontSize: 25,
-      left: 240,
+      left: 205,
       top: 70,
       originX: 'center',
       originY: 'center',
@@ -151,7 +152,7 @@ export class FovComponent implements OnInit {
     this.canvas.add(label_3);
 
     let underline = new fabric.Rect({
-      left: 240,
+      left: 205,
       top: 85,
       originX: 'center',
       originY: 'center',
@@ -164,7 +165,7 @@ export class FovComponent implements OnInit {
     let label_4 = new fabric.Text('2', {
       fontFamily: this.font,
       fontSize: 25,
-      left: 240,
+      left: 205,
       top: 100,
       originX: 'center',
       originY: 'center',
@@ -176,8 +177,8 @@ export class FovComponent implements OnInit {
     let label_5 = new fabric.Text('Target', {
       fontFamily: this.font,
       fontSize: this.font_size,
-      left: 65,
-      top: 245,
+      left: 40,
+      top: 235,
       originX: 'center',
       originY: 'center',
       fill: 'black',
@@ -279,7 +280,7 @@ export class FovComponent implements OnInit {
     let file_src = URL.createObjectURL(file);
     let download = document.createElement('a');
     download.href = file_src;
-    download.download = 'Satellite Figure';
+    download.download = 'FOV Figure';
     document.body.appendChild(download);
     download.click();
     document.body.removeChild(download);
