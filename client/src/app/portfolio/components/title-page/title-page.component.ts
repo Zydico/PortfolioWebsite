@@ -35,6 +35,7 @@ export class TitlePageComponent implements OnInit {
                     "assets/Images/Kepler_Project/Thumbnail.png",
                     "assets/Images/Research/cr3bp.jpg",
                     "assets/Images/Research/SDA.png",
+                    "assets/Images/Research/Satellites.png",
                    ];
 
   constructor(public scrollHandlerService : ScrollHandlerService) { }

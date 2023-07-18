@@ -27,6 +27,14 @@ export class LoaderService {
           }
         });
         this.hideLoader();
+      } else if (path == 'portfolio/research') {
+        this.router.navigate(['portfolio/research']).then(() => {
+          let element = document.getElementById('projects-page');
+          if (element) {
+            element.scrollIntoView();
+          }
+        });
+        this.hideLoader();      
       } else {
         this.router.navigate([path]);
         this.hideLoader();
