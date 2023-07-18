@@ -22,7 +22,7 @@ font = "Times New Roman";
 var lastCoordinate; // used to store the last known coordinates
 
 // Setting up the Canvas element
-canvas = new fabric.Canvas('c');
+canvas = new fabric.StaticCanvas('c');
 canvas.setDimensions({width: axis_size*2 + margins, height: axis_size*2 + margins});
 centerX = canvas.getWidth()/2 + origin_offset[0];
 centerY = canvas.getHeight()/2 - origin_offset[1];
@@ -53,8 +53,6 @@ createText("r3", 80, 100, "black", false, true, false, true);
 createText("r2", 90, 55, "black", false, true, false, true);
 createText("r23", 140, 110, "black", false, true, false, true);
 createText("O", 0, -15, "black", false);
-// angles
-drawArc(0, 0, 100, 0, 20 * Math.PI/180, "black");
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -231,41 +229,4 @@ function drawSpecificLine(x1, y1, x2, y2, dashed, arrow, point, color, arrowSize
 function drawLine(x1, y1, length, angle, dashed, arrow, point, color, arrowSize, lineWidth, labelText, labelX, labelY, overline, subscript, hat) {
     angle_rad = angle * Math.PI/180;
     drawSpecificLine(x1, y1, x1 + length * Math.cos(angle_rad), y1 + length * Math.sin(angle_rad), dashed, arrow, point, color, arrowSize, lineWidth, labelText, labelX, labelY, overline, subscript, hat);
-}
-
-function drawArc(x, y, r, startAngle, endAngle, color) {
-    arc = new fabric.Circle({
-        radius: r,
-        stroke: color,
-        fill: "transparent",
-        left: centerX + x,
-        top: centerY - y,
-        originX: 'center',
-        originY: 'center',
-        startAngle: -endAngle+0.05,
-        endAngle: 0,
-    });
-    canvas.add(arc);
-
-    x2 = x + r * Math.cos(endAngle);
-    y2 = y + r * Math.sin(endAngle);
-    offset = 5;
-    x2 = x2 + offset * Math.sin(endAngle);
-    y2 = y2 - offset * Math.cos(endAngle);
-    arrowLineAngle = endAngle+Math.PI/2;
-    arrowSize = 5;
-    
-    sharpness_angle_1 = Math.PI + arrowLineAngle - (Math.PI/2) + (arrow_angle * Math.PI/180);
-    sharpness_angle_2 = Math.PI + arrowLineAngle + (Math.PI/2) - (arrow_angle * Math.PI/180);
-    point1 = [x2 + arrowSize * Math.cos(sharpness_angle_1), y2 + arrowSize * Math.sin(sharpness_angle_1)];
-    point2 = [x2 + arrowSize * Math.cos(sharpness_angle_2), y2 + arrowSize * Math.sin(sharpness_angle_2)];
-    point3 = [x2 + (arrowSize * 1.5) * Math.cos(angle), y2 + arrowSize * Math.sin(arrowLineAngle)];
-
-    polygon = new fabric.Polygon([
-    { x: centerX + point1[0], y: centerY - point1[1] },
-    { x: centerX + point2[0], y: centerY - point2[1] },
-    { x: centerX + point3[0], y: centerY - point3[1] }], {
-        fill: color
-    });
-    canvas.add(polygon);
 }
