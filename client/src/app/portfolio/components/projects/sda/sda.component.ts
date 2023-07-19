@@ -10,7 +10,7 @@ import { fabric } from 'fabric';
 export class SdaComponent implements OnInit {
 
   private canvas;
-  private axis_size = 130;
+  private axis_size = 120;
   private margins = 0;
   private center_X;
   private center_Y;
@@ -42,18 +42,18 @@ export class SdaComponent implements OnInit {
     // this.drawLine(0, 0, this.axis_size, 0, 'black', this.axis_line_width, true, true);
     // this.drawLine(0, 0, 0, this.axis_size, 'black', this.axis_line_width, true, true);
     // this.drawLine(0, 0, -this.axis_size * Math.cos(Math.PI/4), -this.axis_size * Math.cos(Math.PI/4), 'black', this.axis_line_width, true, true);
-    this.drawLine(130, 110, 130, 50, 'black', 0.75, false, false);
+    //this.drawLine(130, 110, 130, 50, 'black', 0.75, false, false);
     this.drawPoint(130, 50, '#B6B6B6', 30);
     this.drawPoint(0, 0, 'black', 4);
     this.drawPoint(130, 150, 'black', 4);
     this.drawLine(0, 0, 130, 50, 'black', 0.75, false, true);
     this.drawLine(0, 0, 128, 148, 'black', 0.75, false, true);
-    this.drawLine(0, 0, 130, 110, 'black', 0.75, false, true);
+    //this.drawLine(0, 0, 130, 110, 'black', 0.75, false, true);
     let angle_1 = Math.atan(50/130)*180/Math.PI;
     let angle_2 = Math.atan(110/130)*180/Math.PI;
     let angle_3 = Math.atan(148/128)*180/Math.PI;
     this.drawArc(0, 0, 80, angle_1, angle_3, '#FF0000');
-    this.drawArc(0, 0, 100, angle_1, angle_2, '#7279FF');
+    //this.drawArc(0, 0, 100, angle_1, angle_2, '#7279FF');
     // this.createText('X̂', 212, 0, 'black', false, true);
     // this.createText('Ŷ', 0, 215, 'black', false, true);
     // this.createText('Ẑ', -155, -155, 'black', false, true);
@@ -61,7 +61,7 @@ export class SdaComponent implements OnInit {
     this.createText('Moon', 190, 50, 'black', false, false);
     this.createText('Target', 170, 150, 'black', false, false);
     this.createText('θ', 42, 65, '#FF0000', false, true);
-    this.createText('φ', 93, 65, '#7279FF', false, true);
+    //this.createText('φ', 93, 65, '#7279FF', false, true);
     this.createText('ρ', 70, 19, 'black', true, true);
     this.createText('γ', 70, 100, 'black', true, false);
   }
