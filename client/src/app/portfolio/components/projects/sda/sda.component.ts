@@ -64,6 +64,7 @@ export class SdaComponent implements OnInit {
     //this.createText('φ', 93, 65, '#7279FF', false, true);
     this.createText('ρ', 70, 19, 'black', true, true);
     this.createText('γ', 70, 100, 'black', true, false);
+    this.canvas.renderAll();
   }
 
   // Helper Functions

@@ -9,37 +9,47 @@ import { fabric } from 'fabric';
 })
 export class FovComponent implements OnInit {
 
-  private dimensions = [300, 470];
+  private dimensions = [320, 470];
   private canvas;
   private font = "Times New Roman";
   private font_size = 30;
   private radius = 125;
   private angle = 130;
   private point_size = 10;
-  private offset = [20, 107];
+  private offset = [30, 107];
 
   constructor(public loader: LoaderService) { }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    // Helper function to search for specific object in group
-    fabric.Group.prototype.getItemByName = function(name) {
-      var object = null,
-          objects = this.getObjects();
-      for (var i = 0, len = this.size(); i < len; i++) {
-        if (objects[i].name && objects[i].name === name) {
-          object = objects[i];
-          break;
-        }
-      }
-      return object;
-    };
 
-    // Setting up canvas element
-    let canvas = new fabric.StaticCanvas('c');
-    this.canvas = canvas;
-    canvas.setDimensions({width: this.dimensions[0], height: this.dimensions[1]});
-    this.draw();
+    window.addEventListener('load', () => {
+      var preload = document.getElementsByClassName('preload-font');
+      while(preload[0]) {
+          preload[0].parentNode.removeChild(preload[0]);
+      }​
+
+      // Helper function to search for specific object in group
+      fabric.Group.prototype.getItemByName = function(name) {
+        var object = null,
+            objects = this.getObjects();
+        for (var i = 0, len = this.size(); i < len; i++) {
+          if (objects[i].name && objects[i].name === name) {
+            object = objects[i];
+            break;
+          }
+        }
+        return object;
+      };
+
+      // Setting up canvas element
+      let canvas = new fabric.StaticCanvas('c');
+      this.canvas = canvas;
+      canvas.setDimensions({width: this.dimensions[0], height: this.dimensions[1]});
+      this.draw();
+      canvas.renderAll();
+    })
+    
   }
 
   draw(): void {
@@ -47,9 +57,23 @@ export class FovComponent implements OnInit {
     let circle_y = this.dimensions[1]/2 + this.offset[1];
     this.createCircle(circle_x, circle_y);
     this.createTriangle(circle_x, circle_y);
+    this.createText(190, 15, 'Satellite', 'black', 30);
   }
 
   // Helper Functions
+
+  createText(x, y, text, color, size) {
+    let label = new fabric.Text(text, {
+      fontFamily: 'cmu',
+      fontSize: size,
+      left: x,
+      top: y,
+      originX: 'center',
+      originY: 'center',
+      fill: color,
+    });
+    this.canvas.add(label);
+  }
 
   createTriangle(x, y): void {
     let height = 300;
@@ -63,17 +87,6 @@ export class FovComponent implements OnInit {
       originY: 'center',
     });
     this.canvas.add(point);
-    
-    let label = new fabric.Text('Satellite', {
-      fontFamily: this.font,
-      fontSize: this.font_size,
-      left: x,
-      top: y - height - 25,
-      originX: 'center',
-      originY: 'center',
-      fill: 'black',
-    });
-    this.canvas.add(label);
 
     let line_1 = new fabric.Line([x, y, x, y - height], {
       stroke: 'black',
@@ -128,8 +141,8 @@ export class FovComponent implements OnInit {
     let label_2 = new fabric.Text('εmin', {
       fontFamily: this.font,
       fontSize: this.font_size,
-      left: 70,
-      top: 200,
+      left: 80,
+      top: 190,
       originX: 'center',
       originY: 'center',
       fill: '#FF0000',
@@ -175,9 +188,9 @@ export class FovComponent implements OnInit {
     this.canvas.add(label_4);
 
     let label_5 = new fabric.Text('Target', {
-      fontFamily: this.font,
+      fontFamily: 'cmu',
       fontSize: this.font_size,
-      left: 40,
+      left: 55,
       top: 235,
       originX: 'center',
       originY: 'center',
