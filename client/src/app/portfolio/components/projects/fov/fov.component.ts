@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { LoaderService } from '../../../../shared/services/loader/loader.service';
 import { fabric } from 'fabric';
 
@@ -7,7 +7,7 @@ import { fabric } from 'fabric';
   templateUrl: './fov.component.html',
   styleUrls: ['./fov.component.scss']
 })
-export class FovComponent implements OnInit {
+export class FovComponent implements OnInit, AfterViewInit {
 
   private dimensions = [320, 470];
   private canvas;
@@ -22,34 +22,32 @@ export class FovComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+  }
+  
+  ngAfterViewInit(): void {
+    var preload = document.getElementsByClassName('preload-font');
+    while(preload[0]) {
+        preload[0].parentNode.removeChild(preload[0]);
+    }
 
-    window.addEventListener('load', () => {
-      var preload = document.getElementsByClassName('preload-font');
-      while(preload[0]) {
-          preload[0].parentNode.removeChild(preload[0]);
-      }​
-
-      // Helper function to search for specific object in group
-      fabric.Group.prototype.getItemByName = function(name) {
-        var object = null,
-            objects = this.getObjects();
-        for (var i = 0, len = this.size(); i < len; i++) {
-          if (objects[i].name && objects[i].name === name) {
-            object = objects[i];
-            break;
-          }
+    // Helper function to search for specific object in group
+    fabric.Group.prototype.getItemByName = function(name) {
+      let object = null,
+      objects = this.getObjects();
+      for (let i = 0, len = this.size(); i < len; i++) {
+        if (objects[i].name && objects[i].name === name) {
+          object = objects[i];
+          break;
         }
-        return object;
-      };
-
-      // Setting up canvas element
-      let canvas = new fabric.StaticCanvas('c');
-      this.canvas = canvas;
-      canvas.setDimensions({width: this.dimensions[0], height: this.dimensions[1]});
-      this.draw();
-      canvas.renderAll();
-    })
-    
+      }
+      return object;
+    };
+    // Setting up canvas element
+    let canvas = new fabric.StaticCanvas('c');
+    this.canvas = canvas;
+    canvas.setDimensions({width: this.dimensions[0], height: this.dimensions[1]});
+    this.draw();
+    canvas.renderAll();
   }
 
   draw(): void {
@@ -57,7 +55,10 @@ export class FovComponent implements OnInit {
     let circle_y = this.dimensions[1]/2 + this.offset[1];
     this.createCircle(circle_x, circle_y);
     this.createTriangle(circle_x, circle_y);
-    this.createText(190, 15, 'Satellite', 'black', 30);
+    this.createText(190, 20, 'Satellite', 'black', 30);
+    this.addSVG(87, 195, '/assets/Images/Research/FOV/epsilon.svg', 1.5, 'red');
+    this.addSVG(130, 310, '/assets/Images/Research/FOV/Re.svg', 1.5, 'black');
+    this.addSVG(225, 80, '/assets/Images/Research/FOV/fraction.svg', 1, 'blue');
   }
 
   // Helper Functions
@@ -138,59 +139,10 @@ export class FovComponent implements OnInit {
     this.canvas.add(angle_2);
     this.canvas.sendToBack(angle_2);
 
-    let label_2 = new fabric.Text('εmin', {
-      fontFamily: this.font,
-      fontSize: this.font_size,
-      left: 80,
-      top: 190,
-      originX: 'center',
-      originY: 'center',
-      fill: '#FF0000',
-      fontStyle: 'italic',
-      subscript: { size: 0.8, baseline: 0.2 },
-    });
-    label_2.setSubscript(1, 4);
-    this.canvas.add(label_2);
-
-    let label_3 = new fabric.Text('FOV', {
-      fontFamily: this.font,
-      fontSize: 25,
-      left: 205,
-      top: 70,
-      originX: 'center',
-      originY: 'center',
-      fill: '#7279FF',
-      fontStyle: 'italic',
-    });
-    this.canvas.add(label_3);
-
-    let underline = new fabric.Rect({
-      left: 205,
-      top: 85,
-      originX: 'center',
-      originY: 'center',
-      fill: '#7279FF',
-      width: 50,
-      height: 2,
-    });
-    this.canvas.add(underline);
-
-    let label_4 = new fabric.Text('2', {
-      fontFamily: this.font,
-      fontSize: 25,
-      left: 205,
-      top: 100,
-      originX: 'center',
-      originY: 'center',
-      fill: '#7279FF',
-      fontStyle: 'italic',
-    });
-    this.canvas.add(label_4);
-
     let label_5 = new fabric.Text('Target', {
       fontFamily: 'cmu',
       fontSize: this.font_size,
-      left: 55,
+      left: 57,
       top: 235,
       originX: 'center',
       originY: 'center',
@@ -198,6 +150,27 @@ export class FovComponent implements OnInit {
     });
     this.canvas.add(label_5);
 
+  }
+
+  addSVG(x, y, url, scale, color): void {
+    fabric.loadSVGFromURL(url, (objects, options) => {
+      for (let i = 0; i < objects.length; i++) {
+        objects[i].set({
+          fill: color
+        })
+      }
+      let svg = fabric.util.groupSVGElements(objects, options);
+      svg.set({
+        left: x, 
+        top: y,
+        scaleX: scale,
+        scaleY: scale,
+        originX: 'center',
+        originY: 'center',
+      });
+      this.canvas.add(svg); 
+      this.canvas.renderAll();
+    }); 
   }
 
   createCircle(x, y): void {
@@ -259,23 +232,8 @@ export class FovComponent implements OnInit {
       originY: 'center',
     });
 
-    let label = new fabric.Text('Re', {
-      fontFamily: this.font,
-      fontSize: this.font_size,
-      left: this.radius/2,
-      top: -25,
-      originX: 'center',
-      originY: 'center',
-      fill: 'black',
-      fontStyle: 'italic',
-      subscript: { size: 0.8, baseline: 0.2 },
-      name: 'label',
-      angle: this.angle
-    });
-    label.setSubscript(1, 2);
-
     let group = new fabric.Group([
-      origin, circle, point, line, line_2, line_3, line_4, label
+      origin, circle, point, line, line_2, line_3, line_4
     ], {
       left: x - 1.25,
       top: y,
