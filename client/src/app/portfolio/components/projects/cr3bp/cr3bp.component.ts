@@ -88,6 +88,9 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
     let d_4 = this.getDistance([point_3.left, point_3.top], [point_2.left, point_2.top]);
     let a_4 = this.getAngle([point_3.left, -point_3.top], [point_2.left, -point_2.top]);
     this.createPolarLine([point_3.left, point_3.top], d_4 - point_2.radius, a_4, black_line, true);
+    let d_5 = this.getDistance([this.origin[0], this.origin[1]], [point_1.left, point_1.top]);
+    let a_5 = this.getAngle([this.origin[0], -this.origin[1]], [point_1.left, -point_1.top]);
+    this.createPolarLine([this.origin[0], this.origin[1]], d_5 - point_1.radius, a_5, black_line, true);
 
     // Angles
     this.createArc([this.origin[0], this.origin[1]], 100, 0, 20, 'black');
