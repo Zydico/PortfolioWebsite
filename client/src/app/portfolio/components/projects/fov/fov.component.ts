@@ -55,10 +55,11 @@ export class FovComponent implements OnInit, AfterViewInit {
     let circle_y = this.dimensions[1]/2 + this.offset[1];
     this.createCircle(circle_x, circle_y);
     this.createTriangle(circle_x, circle_y);
-    this.createText(190, 20, 'Satellite', 'black', 30);
     this.addSVG(87, 195, '/assets/Images/Research/FOV/epsilon.svg', 1.5, 'red');
     this.addSVG(130, 310, '/assets/Images/Research/FOV/Re.svg', 1.5, 'black');
     this.addSVG(225, 80, '/assets/Images/Research/FOV/fraction.svg', 1, 'blue');
+    this.addSVG(190, 20, '/assets/Images/Research/FOV/satellite.svg', 1.5, 'black');
+    this.addSVG(57, 235, '/assets/Images/Research/FOV/target.svg', 1.5, 'black');
   }
 
   // Helper Functions
@@ -138,18 +139,6 @@ export class FovComponent implements OnInit, AfterViewInit {
     });
     this.canvas.add(angle_2);
     this.canvas.sendToBack(angle_2);
-
-    let label_5 = new fabric.Text('Target', {
-      fontFamily: 'cmu',
-      fontSize: this.font_size,
-      left: 57,
-      top: 235,
-      originX: 'center',
-      originY: 'center',
-      fill: 'black',
-    });
-    this.canvas.add(label_5);
-
   }
 
   addSVG(x, y, url, scale, color): void {
