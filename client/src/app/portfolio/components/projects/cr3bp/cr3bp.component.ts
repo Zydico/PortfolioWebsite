@@ -181,7 +181,7 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
       });
       this.canvas.add(svg); 
       this.canvas.renderAll();
-  }); 
+    }); 
   }
 
   getDistance(p1, p2): number {
