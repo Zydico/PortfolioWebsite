@@ -1,16 +1,16 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { LoaderService } from '../../../../shared/services/loader/loader.service';
+import { LoaderService } from 'src/app/shared/services/loader/loader.service';
 import { fabric } from 'fabric';
 
 @Component({
-  selector: 'app-cr3bp',
-  templateUrl: './cr3bp.component.html',
-  styleUrls: ['./cr3bp.component.scss']
+  selector: 'app-best-worst',
+  templateUrl: './best-worst.component.html',
+  styleUrls: ['./best-worst.component.scss']
 })
-export class Cr3bpComponent implements OnInit, AfterViewInit {
+export class BestWorstComponent implements OnInit, AfterViewInit {
   private canvas;
-  private dimensions = [410, 410];
-  private origin = [175, 235];
+  private dimensions = [800, 800];
+  private origin = [this.dimensions[0]/2, this.dimensions[1]/2];
 
   constructor(public loader: LoaderService) { }
 
@@ -19,18 +19,6 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Helper function to search for specific object in group
-    fabric.Group.prototype.getItemByName = function(name) {
-      let object = null,
-      objects = this.getObjects();
-      for (let i = 0, len = this.size(); i < len; i++) {
-        if (objects[i].name && objects[i].name === name) {
-          object = objects[i];
-          break;
-        }
-      }
-      return object;
-    };
     // Setting up canvas element
     let canvas = new fabric.StaticCanvas('c');
     this.canvas = canvas;
@@ -40,40 +28,17 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
   }
 
   draw(): void {
-    let axis_line = {
-      stroke: 'black',
-      strokeWidth: 1.9,
-      originX: 'center',
-      originY: 'center',
-      strokeDashArray: [2.5, 2.5],
-    };
-    let red_line = {
-      stroke: 'red',
-      strokeWidth: 2,
-      originX: 'center',
-      originY: 'center',
-    };
     let black_line = {
-      stroke: '#545454',
+      stroke: 'black',
       strokeWidth: 1,
       originX: 'center',
       originY: 'center',
     };
-    // Axis Lines
-    this.createLine([this.origin[0], this.origin[1]], [this.origin[0]+200, this.origin[1]], axis_line, true);
-    this.createLine([this.origin[0], this.origin[1]], [this.origin[0], this.origin[1]+200], axis_line, true);
-    this.createLine([this.origin[0], this.origin[1]], [this.origin[0]+200*Math.cos(225*Math.PI/180), this.origin[1]+200*Math.cos(225*Math.PI/180)], axis_line, true);
-
     // Points
     let point_1 = this.createPoint([this.origin[0] + 170*Math.cos(20*Math.PI/180), this.origin[1] - 170*Math.sin(20*Math.PI/180)], 5, 'black');
     let point_2 = this.createPoint([this.origin[0] + 170*Math.cos(55*Math.PI/180), this.origin[1] - 170*Math.sin(55*Math.PI/180)], 5, 'black');
     let point_3 = this.createPoint([this.origin[0] + 100*Math.cos(200*Math.PI/180), this.origin[1] - 100*Math.sin(200*Math.PI/180)], 5, 'black');
     
-    // Red Lines
-    this.createPolarLine([this.origin[0], this.origin[1]], 200, 20, red_line, true);
-    this.createPolarLine([this.origin[0], this.origin[1]], 200, 110, red_line, true);
-    this.createPolarLine([this.origin[0], this.origin[1]], 150, 225, red_line, true);
-
     // Black Lines
     let d_1 = this.getDistance([point_1.left, point_1.top], [point_2.left, point_2.top]);
     let a_1 = this.getAngle([point_1.left, -point_1.top], [point_2.left, -point_2.top]);
@@ -91,26 +56,23 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
     let a_5 = this.getAngle([this.origin[0], -this.origin[1]], [point_1.left, -point_1.top]);
     this.createPolarLine([this.origin[0], this.origin[1]], d_5 - point_1.radius, a_5, black_line, true);
 
-    // Angles
-    this.createArc([this.origin[0], this.origin[1]], 100, 0, 20, 'black');
-
-    // Labels
-    this.addSVG(290, 213, '/assets/Images/Research/cr3bp/theta.svg', 2, 'black');
-    this.addSVG(390, 235, '/assets/Images/Research/cr3bp/X uppercase.svg', 1.25, 'black');
-    this.addSVG(181, 18, '/assets/Images/Research/cr3bp/Y uppercase.svg', 1.25, 'black');
-    this.addSVG(18, 392, '/assets/Images/Research/cr3bp/Z uppercase.svg', 1.25, 'black');
-    this.addSVG(380, 157, '/assets/Images/Research/cr3bp/X lowercase.svg', 1.25, 'red');
-    this.addSVG(105, 30, '/assets/Images/Research/cr3bp/Y lowercase.svg', 1.25, 'red');
-    this.addSVG(95, 340, '/assets/Images/Research/cr3bp/Z lowercase.svg', 1.25, 'red');
-    this.addSVG(185, 251, '/assets/Images/Research/cr3bp/origin.svg', 2, 'black');
-    this.addSVG(55, 280, '/assets/Images/Research/cr3bp/m1.svg', 1.25, 'black');
-    this.addSVG(360, 190, '/assets/Images/Research/cr3bp/m2.svg', 1.25, 'black');
-    this.addSVG(272, 77, '/assets/Images/Research/cr3bp/m3.svg', 1.25, 'black');
-    this.addSVG(113, 275, '/assets/Images/Research/cr3bp/r1.svg', 1.25, 'black');
-    this.addSVG(115, 210, '/assets/Images/Research/cr3bp/r13.svg', 1.25, 'black');
-    this.addSVG(260, 186, '/assets/Images/Research/cr3bp/r2.svg', 1.25, 'black');
-    this.addSVG(255, 150, '/assets/Images/Research/cr3bp/r3.svg', 1.25, 'black');
-    this.addSVG(325, 130, '/assets/Images/Research/cr3bp/r23.svg', 1.25, 'black');
+    // // Labels
+    // this.addSVG(290, 213, '/assets/Images/Research/cr3bp/theta.svg', 2, 'black');
+    // this.addSVG(390, 235, '/assets/Images/Research/cr3bp/X uppercase.svg', 1.25, 'black');
+    // this.addSVG(181, 18, '/assets/Images/Research/cr3bp/Y uppercase.svg', 1.25, 'black');
+    // this.addSVG(18, 392, '/assets/Images/Research/cr3bp/Z uppercase.svg', 1.25, 'black');
+    // this.addSVG(380, 157, '/assets/Images/Research/cr3bp/X lowercase.svg', 1.25, 'red');
+    // this.addSVG(105, 30, '/assets/Images/Research/cr3bp/Y lowercase.svg', 1.25, 'red');
+    // this.addSVG(95, 340, '/assets/Images/Research/cr3bp/Z lowercase.svg', 1.25, 'red');
+    // this.addSVG(185, 251, '/assets/Images/Research/cr3bp/origin.svg', 2, 'black');
+    // this.addSVG(55, 280, '/assets/Images/Research/cr3bp/m1.svg', 1.25, 'black');
+    // this.addSVG(360, 190, '/assets/Images/Research/cr3bp/m2.svg', 1.25, 'black');
+    // this.addSVG(272, 77, '/assets/Images/Research/cr3bp/m3.svg', 1.25, 'black');
+    // this.addSVG(113, 275, '/assets/Images/Research/cr3bp/r1.svg', 1.25, 'black');
+    // this.addSVG(115, 210, '/assets/Images/Research/cr3bp/r13.svg', 1.25, 'black');
+    // this.addSVG(260, 186, '/assets/Images/Research/cr3bp/r2.svg', 1.25, 'black');
+    // this.addSVG(255, 150, '/assets/Images/Research/cr3bp/r3.svg', 1.25, 'black');
+    // this.addSVG(325, 130, '/assets/Images/Research/cr3bp/r23.svg', 1.25, 'black');
 
     // Z-index
     this.canvas.bringToFront(point_1);
@@ -233,4 +195,5 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
     download.click();
     document.body.removeChild(download);
   }
+
 }

@@ -31,6 +31,7 @@ import { Cr3bpComponent } from './portfolio/components/projects/cr3bp/cr3bp.comp
 import { SdaComponent } from './portfolio/components/projects/sda/sda.component';
 import { SatellitesComponent } from './portfolio/components/projects/satellites/satellites.component';
 import { FovComponent } from './portfolio/components/projects/fov/fov.component';
+import { BestWorstComponent } from './portfolio/components/projects/best-worst/best-worst.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FovComponent } from './portfolio/components/projects/fov/fov.component'
     SdaComponent,
     SatellitesComponent,
     FovComponent,
+    BestWorstComponent,
   ],
   imports: [
     BrowserModule,
