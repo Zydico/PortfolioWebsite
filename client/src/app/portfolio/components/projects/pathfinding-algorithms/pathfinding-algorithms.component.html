@@ -1,0 +1,30 @@
+<div id="background"></div>
+<div id="back-button" (click)="loader.changePage('portfolio/web-apps')">Back</div>
+
+<div style="text-align:center;">
+    <div id="canvas-wrapper">
+        <canvas id="c"></canvas>
+        <div id="buttons-container">
+            <fieldset>
+                <legend>Tile</legend>
+                <div><input class="radio" type="radio" id="start" name="tile" value="start" checked="checked" (click)="tileChange('start')"><label for="start">Start</label></div>
+                <div><input class="radio" type="radio" id="goal" name="tile" value="goal" (click)="tileChange('goal')"><label for="goal">Goal</label></div>
+                <div><input class="radio" type="radio" id="obstacle" name="tile" value="obstacle" (click)="tileChange('obstacle')"><label for="obstacle">Obstacle</label></div>
+            </fieldset>
+            <fieldset>
+                <legend>Algorithm</legend>
+                <div><input class="radio" type="radio" id="a-star-manhattan" name="algorithm" value="a-star-manhattan" (click)="algorithmChange('a-star-manhattan')" checked="checked"><label for="a-star">A* Manhattan</label></div>
+                <div><input class="radio" type="radio" id="a-star-euclidean" name="algorithm" value="a-star-euclidean" (click)="algorithmChange('a-star-euclidean')"><label for="a-star">A* Euclidean</label></div>
+            </fieldset>
+            <div class="header">Presets</div>
+            <button class="preset-button" type="button" (click)="applyPreset(1)">Preset 1</button>
+            <button id="clear-search-button" type="button" (click)="clearSearch()">Clear Search</button>
+            <button id="clear-grid-button" type="button" (click)="clearGrid()">Clear Grid</button>
+            <button id="search-button" type="button" (click)="startSearch()">Search</button>
+            <div id="slider">
+                <input type="range" min="0" max="100" value="0" id="speed" name="speed" (input)="speedChange($event)"><label for="speed">Speed</label>
+            </div>
+            <div id="time">Elapsed Time: {{ elapsedTime.toString() }} seconds</div>
+        </div>
+    </div>
+</div>

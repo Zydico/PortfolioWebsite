@@ -17,6 +17,8 @@ import { SdaComponent } from './portfolio/components/projects/sda/sda.component'
 import { SatellitesComponent } from './portfolio/components/projects/satellites/satellites.component';
 import { FovComponent } from './portfolio/components/projects/fov/fov.component';
 import { BestWorstComponent } from './portfolio/components/projects/best-worst/best-worst.component';
+import { Satellites2Component } from './portfolio/components/projects/satellites2/satellites2.component';
+import { PathfindingAlgorithmsComponent } from './portfolio/components/projects/pathfinding-algorithms/pathfinding-algorithms.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/portfolio', pathMatch: 'full' },
@@ -33,6 +35,7 @@ const routes: Routes = [
   // Web Apps
   { path: 'sort-algorithm-visualizer', component: SortAlgorithmVisualizerComponent },
   { path: 'kepler-simulation', component: KeplerComponent },
+  { path: 'pathfinding-algorithms', component: PathfindingAlgorithmsComponent },
 
   // School Projects
   { path: 'paper-airplane', component: PaperAirplaneComponent },
@@ -47,6 +50,7 @@ const routes: Routes = [
   { path: 'satellites', component: SatellitesComponent },
   { path: 'fov', component: FovComponent },
   { path: 'best-worst', component: BestWorstComponent },
+  { path: 'satellites2', component: Satellites2Component },
 
   // Default Redirect
   { path: '**', redirectTo: '/portfolio', pathMatch: 'full' }

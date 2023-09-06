@@ -17,9 +17,10 @@
 #saveButton {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 40px;
     display: block;
     font-size: 12pt;
+    width: 130px;
 }
 
 a {
@@ -29,12 +30,4 @@ a {
 #links {
     margin-top: 3rem;
     text-align: center;
-}
-
-#downloadSvg {
-    margin-top: 10px;
-}
-
-input {
-    width: 150px;
 }

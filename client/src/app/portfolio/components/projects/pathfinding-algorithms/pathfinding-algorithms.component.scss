@@ -1,0 +1,117 @@
+@import 'project';
+
+#background {
+    background-color: #1F1F1F;
+    text-align: center;
+}
+
+#canvas-wrapper {
+    background-color: white;
+    padding: 0;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    position: relative;
+}
+
+#buttons-container {
+    width: 300px;
+    height: 500px;
+    background-color: #1F1F1F;
+    border: 2px solid white;
+    position: absolute;
+    right: -320px;
+    top: 0px;
+    padding: 10px;
+    text-align: left;
+}
+
+.header {
+    font-size: 20pt;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+fieldset {
+    margin-bottom: 10px;
+}
+
+.radio {
+    padding: 0;
+    margin-top: 10px;
+    width: 40px;
+}
+
+.preset-button {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(94, 94, 187);
+}
+
+.preset-button:hover {
+    background-color: rgb(115, 115, 194);
+}
+
+#search-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+#clear-search-button {
+    display: flex;
+    background-color: rgb(177, 115, 0);
+    position: absolute;
+    bottom: 70px;
+    left: 10px;
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12pt;
+    justify-content: center;
+}
+
+#clear-grid-button {
+    display: flex;
+    background-color: rgb(177, 115, 0);
+    position: absolute;
+    bottom: 70px;
+    left: 130px;
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12pt;
+    justify-content: center;
+}
+
+#clear-search-button:hover, #clear-grid-button:hover {
+    background-color: rgb(207, 135, 0);
+}
+
+#slider {
+    vertical-align: middle;
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+}
+
+#slider label {
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+#speed {
+    vertical-align: middle;
+    width: 100px;
+}
+
+#time {
+    position: absolute;
+    bottom: -30px;
+}

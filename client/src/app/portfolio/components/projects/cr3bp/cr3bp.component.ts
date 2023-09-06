@@ -42,7 +42,7 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
   draw(): void {
     let axis_line = {
       stroke: 'black',
-      strokeWidth: 1.9,
+      strokeWidth: 1.8,
       originX: 'center',
       originY: 'center',
       strokeDashArray: [2.5, 2.5],
@@ -54,8 +54,8 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
       originY: 'center',
     };
     let black_line = {
-      stroke: '#545454',
-      strokeWidth: 1,
+      stroke: '#000170',
+      strokeWidth: 2,
       originX: 'center',
       originY: 'center',
     };
@@ -70,7 +70,7 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
     let point_3 = this.createPoint([this.origin[0] + 100*Math.cos(200*Math.PI/180), this.origin[1] - 100*Math.sin(200*Math.PI/180)], 5, 'black');
     
     // Red Lines
-    this.createPolarLine([this.origin[0], this.origin[1]], 200, 20, red_line, true);
+    this.createPolarLine([this.origin[0], this.origin[1]], 220, 20, red_line, true);
     this.createPolarLine([this.origin[0], this.origin[1]], 200, 110, red_line, true);
     this.createPolarLine([this.origin[0], this.origin[1]], 150, 225, red_line, true);
 
@@ -83,7 +83,7 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
     this.createPolarLine([this.origin[0], this.origin[1]], d_2 - point_3.radius, a_2, black_line, true);
     let d_3 = this.getDistance([this.origin[0], this.origin[1]], [point_2.left, point_2.top]);
     let a_3 = this.getAngle([this.origin[0], -this.origin[1]], [point_2.left, -point_2.top]);
-    this.createPolarLine([this.origin[0], this.origin[1]], d_3 - point_2.radius, a_3, black_line, true);
+    //this.createPolarLine([this.origin[0], this.origin[1]], d_3 - point_2.radius, a_3, black_line, true);
     let d_4 = this.getDistance([point_3.left, point_3.top], [point_2.left, point_2.top]);
     let a_4 = this.getAngle([point_3.left, -point_3.top], [point_2.left, -point_2.top]);
     this.createPolarLine([point_3.left, point_3.top], d_4 - point_2.radius, a_4, black_line, true);
@@ -92,25 +92,24 @@ export class Cr3bpComponent implements OnInit, AfterViewInit {
     this.createPolarLine([this.origin[0], this.origin[1]], d_5 - point_1.radius, a_5, black_line, true);
 
     // Angles
-    this.createArc([this.origin[0], this.origin[1]], 100, 0, 20, 'black');
+    //this.createArc([this.origin[0], this.origin[1]], 100, 0, 20, 'black');
 
     // Labels
-    this.addSVG(290, 213, '/assets/Images/Research/cr3bp/theta.svg', 2, 'black');
-    this.addSVG(390, 235, '/assets/Images/Research/cr3bp/X uppercase.svg', 1.25, 'black');
-    this.addSVG(181, 18, '/assets/Images/Research/cr3bp/Y uppercase.svg', 1.25, 'black');
-    this.addSVG(18, 392, '/assets/Images/Research/cr3bp/Z uppercase.svg', 1.25, 'black');
-    this.addSVG(380, 157, '/assets/Images/Research/cr3bp/X lowercase.svg', 1.25, 'red');
-    this.addSVG(105, 30, '/assets/Images/Research/cr3bp/Y lowercase.svg', 1.25, 'red');
-    this.addSVG(95, 340, '/assets/Images/Research/cr3bp/Z lowercase.svg', 1.25, 'red');
+    this.addSVG(390, 235, '/assets/Images/Research/cr3bp/xi.svg', 1.25, 'black');
+    this.addSVG(175, 16, '/assets/Images/Research/cr3bp/eta.svg', 1.25, 'black');
+    this.addSVG(18, 392, '/assets/Images/Research/cr3bp/zeta.svg', 1.25, 'black');
+    this.addSVG(395, 155, '/assets/Images/Research/cr3bp/x.svg', 1.25, 'red');
+    this.addSVG(105, 30, '/assets/Images/Research/cr3bp/y.svg', 1.25, 'red');
+    this.addSVG(95, 340, '/assets/Images/Research/cr3bp/z.svg', 1.25, 'red');
     this.addSVG(185, 251, '/assets/Images/Research/cr3bp/origin.svg', 2, 'black');
     this.addSVG(55, 280, '/assets/Images/Research/cr3bp/m1.svg', 1.25, 'black');
     this.addSVG(360, 190, '/assets/Images/Research/cr3bp/m2.svg', 1.25, 'black');
     this.addSVG(272, 77, '/assets/Images/Research/cr3bp/m3.svg', 1.25, 'black');
-    this.addSVG(113, 275, '/assets/Images/Research/cr3bp/r1.svg', 1.25, 'black');
-    this.addSVG(115, 210, '/assets/Images/Research/cr3bp/r13.svg', 1.25, 'black');
-    this.addSVG(260, 186, '/assets/Images/Research/cr3bp/r2.svg', 1.25, 'black');
-    this.addSVG(255, 150, '/assets/Images/Research/cr3bp/r3.svg', 1.25, 'black');
-    this.addSVG(325, 130, '/assets/Images/Research/cr3bp/r23.svg', 1.25, 'black');
+    //this.addSVG(140, 235, '/assets/Images/Research/cr3bp/mu.svg', 2, 'black');
+    this.addSVG(125, 267, '/assets/Images/Research/cr3bp/mu.svg', 2, 'black');
+    this.addSVG(285, 220, '/assets/Images/Research/cr3bp/minus_mu.svg', 1.1, 'black');
+    this.addSVG(210, 120, '/assets/Images/Research/cr3bp/r1.svg', 1.25, 'black');
+    this.addSVG(325, 130, '/assets/Images/Research/cr3bp/r2.svg', 1.25, 'black');
 
     // Z-index
     this.canvas.bringToFront(point_1);

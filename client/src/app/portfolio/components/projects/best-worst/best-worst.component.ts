@@ -9,8 +9,10 @@ import { fabric } from 'fabric';
 })
 export class BestWorstComponent implements OnInit, AfterViewInit {
   private canvas;
-  private dimensions = [800, 800];
+  private scale = 2;
+  private dimensions = [470.66666*this.scale, 272*this.scale];
   private origin = [this.dimensions[0]/2, this.dimensions[1]/2];
+  private placeholders = [];
 
   constructor(public loader: LoaderService) { }
 
@@ -20,7 +22,7 @@ export class BestWorstComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // Setting up canvas element
-    let canvas = new fabric.StaticCanvas('c');
+    let canvas = new fabric.Canvas('c');
     this.canvas = canvas;
     canvas.setDimensions({width: this.dimensions[0], height: this.dimensions[1]});
     this.draw();
@@ -28,56 +30,34 @@ export class BestWorstComponent implements OnInit, AfterViewInit {
   }
 
   draw(): void {
-    let black_line = {
+    let blue_line = {
+      stroke: 'black',
+      strokeWidth: 1,
+      originX: 'center',
+      originY: 'center',
+    };
+    let red_line = {
       stroke: 'black',
       strokeWidth: 1,
       originX: 'center',
       originY: 'center',
     };
     // Points
-    let point_1 = this.createPoint([this.origin[0] + 170*Math.cos(20*Math.PI/180), this.origin[1] - 170*Math.sin(20*Math.PI/180)], 5, 'black');
-    let point_2 = this.createPoint([this.origin[0] + 170*Math.cos(55*Math.PI/180), this.origin[1] - 170*Math.sin(55*Math.PI/180)], 5, 'black');
-    let point_3 = this.createPoint([this.origin[0] + 100*Math.cos(200*Math.PI/180), this.origin[1] - 100*Math.sin(200*Math.PI/180)], 5, 'black');
+    let point_1 = this.createPoint([352.5, 328], 3, 'black');
+    let point_2 = this.createPoint([224, 379], 3, 'black');
     
-    // Black Lines
-    let d_1 = this.getDistance([point_1.left, point_1.top], [point_2.left, point_2.top]);
-    let a_1 = this.getAngle([point_1.left, -point_1.top], [point_2.left, -point_2.top]);
-    this.createPolarLine([point_1.left, point_1.top], d_1 - point_2.radius, a_1, black_line, true);
-    let d_2 = this.getDistance([this.origin[0], this.origin[1]], [point_3.left, point_3.top]);
-    let a_2 = this.getAngle([this.origin[0], -this.origin[1]], [point_3.left, -point_3.top]);
-    this.createPolarLine([this.origin[0], this.origin[1]], d_2 - point_3.radius, a_2, black_line, true);
-    let d_3 = this.getDistance([this.origin[0], this.origin[1]], [point_2.left, point_2.top]);
-    let a_3 = this.getAngle([this.origin[0], -this.origin[1]], [point_2.left, -point_2.top]);
-    this.createPolarLine([this.origin[0], this.origin[1]], d_3 - point_2.radius, a_3, black_line, true);
-    let d_4 = this.getDistance([point_3.left, point_3.top], [point_2.left, point_2.top]);
-    let a_4 = this.getAngle([point_3.left, -point_3.top], [point_2.left, -point_2.top]);
-    this.createPolarLine([point_3.left, point_3.top], d_4 - point_2.radius, a_4, black_line, true);
-    let d_5 = this.getDistance([this.origin[0], this.origin[1]], [point_1.left, point_1.top]);
-    let a_5 = this.getAngle([this.origin[0], -this.origin[1]], [point_1.left, -point_1.top]);
-    this.createPolarLine([this.origin[0], this.origin[1]], d_5 - point_1.radius, a_5, black_line, true);
+    // Lines
+    let d_1 = this.getDistance([380, 300], [point_1.left, point_1.top]);
+    let a_1 = this.getAngle([380, -300], [point_1.left, -point_1.top]);
+    this.createPolarLine([380, 300], d_1 - point_1.radius, a_1, blue_line, true);
+    let d_2 = this.getDistance([200, 350], [point_2.left, point_2.top]);
+    let a_2 = this.getAngle([200, -350], [point_2.left, -point_2.top]);
+    this.createPolarLine([200, 350], d_2 - point_2.radius, a_2, red_line, true);
 
-    // // Labels
-    // this.addSVG(290, 213, '/assets/Images/Research/cr3bp/theta.svg', 2, 'black');
-    // this.addSVG(390, 235, '/assets/Images/Research/cr3bp/X uppercase.svg', 1.25, 'black');
-    // this.addSVG(181, 18, '/assets/Images/Research/cr3bp/Y uppercase.svg', 1.25, 'black');
-    // this.addSVG(18, 392, '/assets/Images/Research/cr3bp/Z uppercase.svg', 1.25, 'black');
-    // this.addSVG(380, 157, '/assets/Images/Research/cr3bp/X lowercase.svg', 1.25, 'red');
-    // this.addSVG(105, 30, '/assets/Images/Research/cr3bp/Y lowercase.svg', 1.25, 'red');
-    // this.addSVG(95, 340, '/assets/Images/Research/cr3bp/Z lowercase.svg', 1.25, 'red');
-    // this.addSVG(185, 251, '/assets/Images/Research/cr3bp/origin.svg', 2, 'black');
-    // this.addSVG(55, 280, '/assets/Images/Research/cr3bp/m1.svg', 1.25, 'black');
-    // this.addSVG(360, 190, '/assets/Images/Research/cr3bp/m2.svg', 1.25, 'black');
-    // this.addSVG(272, 77, '/assets/Images/Research/cr3bp/m3.svg', 1.25, 'black');
-    // this.addSVG(113, 275, '/assets/Images/Research/cr3bp/r1.svg', 1.25, 'black');
-    // this.addSVG(115, 210, '/assets/Images/Research/cr3bp/r13.svg', 1.25, 'black');
-    // this.addSVG(260, 186, '/assets/Images/Research/cr3bp/r2.svg', 1.25, 'black');
-    // this.addSVG(255, 150, '/assets/Images/Research/cr3bp/r3.svg', 1.25, 'black');
-    // this.addSVG(325, 130, '/assets/Images/Research/cr3bp/r23.svg', 1.25, 'black');
-
-    // Z-index
-    this.canvas.bringToFront(point_1);
-    this.canvas.bringToFront(point_2);
-    this.canvas.bringToFront(point_3);
+    // Labels
+    this.addSVG(this.origin[0], this.origin[1], '/assets/Images/Research/best-worst/figure.svg', this.scale, 0);
+    this.addSVG(400, 280, '/assets/Images/Research/best-worst/moon.svg', 1.5, 1, "black");
+    this.addSVG(180, 330, '/assets/Images/Research/best-worst/earth.svg', 1.5, 1, "#black");
   }
 
   // Helper Functions
@@ -124,12 +104,14 @@ export class BestWorstComponent implements OnInit, AfterViewInit {
     return angle;
   }
 
-  addSVG(x, y, url, scale, color): void {
+  addSVG(x, y, url, scale, index, color?): void {
     fabric.loadSVGFromURL(url, (objects, options) => {
-      for (let i = 0; i < objects.length; i++) {
-        objects[i].set({
-          fill: color
-        })
+      if (color) {
+        for (let i = 0; i < objects.length; i++) {
+          objects[i].set({
+            fill: color
+          })
+        }
       }
       let svg = fabric.util.groupSVGElements(objects, options);
       svg.set({
@@ -140,8 +122,7 @@ export class BestWorstComponent implements OnInit, AfterViewInit {
         originX: 'center',
         originY: 'center',
       });
-      this.canvas.add(svg); 
-      this.canvas.renderAll();
+      this.canvas.insertAt(svg, index);
     }); 
   }
 

@@ -32,6 +32,7 @@ import { SdaComponent } from './portfolio/components/projects/sda/sda.component'
 import { SatellitesComponent } from './portfolio/components/projects/satellites/satellites.component';
 import { FovComponent } from './portfolio/components/projects/fov/fov.component';
 import { BestWorstComponent } from './portfolio/components/projects/best-worst/best-worst.component';
+import { PathfindingAlgorithmsComponent } from './portfolio/components/projects/pathfinding-algorithms/pathfinding-algorithms.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { BestWorstComponent } from './portfolio/components/projects/best-worst/b
     SatellitesComponent,
     FovComponent,
     BestWorstComponent,
+    PathfindingAlgorithmsComponent,
   ],
   imports: [
     BrowserModule,
