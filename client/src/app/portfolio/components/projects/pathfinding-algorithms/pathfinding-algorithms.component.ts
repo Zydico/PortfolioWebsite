@@ -12,7 +12,7 @@ export class PathfindingAlgorithmsComponent implements OnInit {
   grid_size = 20; // Grid width and height in pixels
   canvas_size = [800, 600]; // Grid width and height in pixels
   mode = 'start'; // Mouse click tile mode. Between [start/goal/obstacle]
-  algorithm = 'a-star-manhattan'; // Current algorithm search mode
+  algorithm = 'dijkstra'; // Current algorithm search mode
 
   blocks = []; // 2D array of the grid
   start = null; // Reference to the current start block. Can only be one start block.
@@ -103,20 +103,21 @@ export class PathfindingAlgorithmsComponent implements OnInit {
       this.startDate = new Date();
       this.clearSearch();
       let algorithm = this.algorithm;
-      if (algorithm == 'a-star-manhattan') {
+      if (algorithm == 'a-star-manhattan' || algorithm == 'a-star-diagonal' || algorithm == 'a-star-euclidean' || algorithm == 'dijkstra') {
         let open = [];
         let closed = [];
         this.start.g = 0;
         this.start.parent = null;
         open.push(this.start);
-        this.a_star(open, closed, 'manhattan');
-      } else if (algorithm == 'a-star-euclidean') {
-        let open = [];
-        let closed = [];
-        this.start.g = 0;
-        this.start.parent = null;
-        open.push(this.start);
-        this.a_star(open, closed, 'euclidean');
+        if (algorithm == 'a-star-manhattan') {
+          this.a_star(open, closed, 'manhattan');
+        } else if (algorithm == 'a-star-diagonal') {
+          this.a_star(open, closed, 'diagonal');
+        } else if (algorithm == 'a-star-euclidean') {
+          this.a_star(open, closed, 'euclidean');
+        } else if (algorithm == 'dijkstra') {
+          this.a_star(open, closed, 'dijkstra');
+        }
       }
     }
   }
@@ -215,6 +216,10 @@ export class PathfindingAlgorithmsComponent implements OnInit {
       return this.getDistance(node_1, node_2);
     } else if (mode == 'manhattan') {
       return Math.abs(node_1.i - node_2.i) + Math.abs(node_1.j - node_2.j);
+    } else if (mode == 'diagonal') {
+      return Math.max(Math.abs(node_1.i - node_2.i) + Math.abs(node_1.j - node_2.j));
+    } else if (mode == 'dijkstra') {
+      return 1;
     }
   }
 
@@ -335,7 +340,7 @@ export class PathfindingAlgorithmsComponent implements OnInit {
       this.mode = 'goal';
       this.onClick(null, 14, 28);
       this.mode = 'obstacle';
-      for (let i = 12; i < 17; i++) {
+      for (let i = 10; i < 19; i++) {
         this.onClick(null, i, 19);
       }
       this.mode = tempMode;

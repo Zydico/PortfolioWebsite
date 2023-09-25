@@ -12,9 +12,11 @@
                 <div><input class="radio" type="radio" id="obstacle" name="tile" value="obstacle" (click)="tileChange('obstacle')"><label for="obstacle">Obstacle</label></div>
             </fieldset>
             <fieldset>
-                <legend>Algorithm</legend>
-                <div><input class="radio" type="radio" id="a-star-manhattan" name="algorithm" value="a-star-manhattan" (click)="algorithmChange('a-star-manhattan')" checked="checked"><label for="a-star">A* Manhattan</label></div>
-                <div><input class="radio" type="radio" id="a-star-euclidean" name="algorithm" value="a-star-euclidean" (click)="algorithmChange('a-star-euclidean')"><label for="a-star">A* Euclidean</label></div>
+                <legend>Algorithm and Heuristics</legend>
+                <div><input class="radio" type="radio" id="dijkstra" name="algorithm" value="dijkstra" (click)="algorithmChange('dijkstra')" checked="checked"><label for="dijkstra">Dijkstra's</label></div>
+                <div><input class="radio" type="radio" id="a-star-manhattan" name="algorithm" value="a-star-manhattan" (click)="algorithmChange('a-star-manhattan')"><label for="a-star-manhattan">A* Manhattan</label></div>
+                <div><input class="radio" type="radio" id="a-star-diagonal" name="algorithm" value="a-star-diagonal" (click)="algorithmChange('a-star-diagonal')"><label for="a-star-diagonal">A* Diagonal</label></div>
+                <div><input class="radio" type="radio" id="a-star-euclidean" name="algorithm" value="a-star-euclidean" (click)="algorithmChange('a-star-euclidean')"><label for="a-star-euclidean">A* Euclidean</label></div>
             </fieldset>
             <div class="header">Presets</div>
             <button class="preset-button" type="button" (click)="applyPreset(1)">Preset 1</button>
