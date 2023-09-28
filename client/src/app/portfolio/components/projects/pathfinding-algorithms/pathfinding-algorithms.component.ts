@@ -149,11 +149,6 @@ export class PathfindingAlgorithmsComponent implements OnInit {
         neighbors = this.findNeighbors(current);
         for (let i = 0; i < neighbors.length; i++) {
           let neighbor = neighbors[i];
-          if (!neighbor.isTouched && !this.areSame(neighbor, this.start) && !this.areSame(neighbor, this.goal) && neighbor.type != 'obstacle') {
-            neighbor.set('fill', '#6A88A5');
-            neighbor.set('opacity', 1);
-          }
-          let newPath = false;
           if (!this.checkIfInArray(neighbor, closed) && neighbor.type != 'obstacle') {
             let corner = false;
             if ((current.i > neighbor.i && current.j < neighbor.j) && (this.blocks[current.i-1][current.j].type == 'obstacle' || this.blocks[current.i][current.j+1].type == 'obstacle')) {
@@ -166,6 +161,11 @@ export class PathfindingAlgorithmsComponent implements OnInit {
               corner = true; // moving bottom left
             }
             if (!corner) {
+              if (!neighbor.isTouched && !this.areSame(neighbor, this.start) && !this.areSame(neighbor, this.goal) && neighbor.type != 'obstacle') {
+                neighbor.set('fill', '#6A88A5');
+                neighbor.set('opacity', 1);
+              }
+              let newPath = false;
               let tempG = current.g + this.getDistance(current, neighbor);
               if (this.checkIfInArray(neighbor, open)) {
                 if (tempG < neighbor.g) {
@@ -216,8 +216,6 @@ export class PathfindingAlgorithmsComponent implements OnInit {
                         [path[i+1].j * this.grid_size + this.grid_size/2, path[i+1].i * this.grid_size + this.grid_size/2], line));
       }
       this.canvas.renderAll();
-      this.open_nodes = [];
-      this.closed_nodes= [];
     } else {
       console.log('No solution');
       this.inAnimation = false;
@@ -356,6 +354,24 @@ export class PathfindingAlgorithmsComponent implements OnInit {
       for (let i = 10; i < 19; i++) {
         this.onClick(null, i, 19);
       }
+      this.mode = tempMode;
+    } else if (preset == 2) {
+      let tempMode = this.mode;
+      this.clearGrid();
+      this.mode = 'start';
+      this.onClick(null, 14, 11);
+      this.mode = 'goal';
+      this.onClick(null, 14, 28);
+      this.mode = 'obstacle';
+      for (let i = 12; i < 17; i++) {
+        this.onClick(null, i, 19);
+      }
+      this.onClick(null, 11, 18);
+      this.onClick(null, 10, 17);
+      this.onClick(null, 9, 16);
+      this.onClick(null, 17, 18);
+      this.onClick(null, 18, 17);
+      this.onClick(null, 19, 16);
       this.mode = tempMode;
     }
     this.canvas.renderAll();
