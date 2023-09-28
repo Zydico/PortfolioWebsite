@@ -45,6 +45,7 @@ export class PathfindingAlgorithmsComponent implements OnInit {
     canvas.set({
       backgroundColor: '#EFEFEF',
       selection: false,
+      renderOnAddRemove: false,
     })
     this.clearGrid(); // Sets up initial 2D grid array
 
@@ -140,7 +141,6 @@ export class PathfindingAlgorithmsComponent implements OnInit {
       if (this.areSame(open[lowest_index], this.goal)) {
         done = true;
         this.inAnimation = false;
-        console.log('Reached goal');
       }
       if (!done) {
         this.removeFromArray(open, current);
@@ -155,21 +155,33 @@ export class PathfindingAlgorithmsComponent implements OnInit {
           }
           let newPath = false;
           if (!this.checkIfInArray(neighbor, closed) && neighbor.type != 'obstacle') {
-            let tempG = current.g + this.getDistance(current, neighbor);
-            if (this.checkIfInArray(neighbor, open)) {
-              if (tempG < neighbor.g) {
+            let corner = false;
+            if ((current.i > neighbor.i && current.j < neighbor.j) && (this.blocks[current.i-1][current.j].type == 'obstacle' || this.blocks[current.i][current.j+1].type == 'obstacle')) {
+              corner = true; // moving top right
+            } else if ((current.i < neighbor.i && current.j < neighbor.j) && (this.blocks[current.i+1][current.j].type == 'obstacle' || this.blocks[current.i][current.j+1].type == 'obstacle')) {
+              corner = true; // moving bottom right
+            } else if ((current.i > neighbor.i && current.j > neighbor.j) && (this.blocks[current.i-1][current.j].type == 'obstacle' || this.blocks[current.i][current.j-1].type == 'obstacle')) {
+              corner = true; // moving top left
+            } else if ((current.i < neighbor.i && current.j > neighbor.j) && (this.blocks[current.i+1][current.j].type == 'obstacle' || this.blocks[current.i][current.j-1].type == 'obstacle')) {
+              corner = true; // moving bottom left
+            }
+            if (!corner) {
+              let tempG = current.g + this.getDistance(current, neighbor);
+              if (this.checkIfInArray(neighbor, open)) {
+                if (tempG < neighbor.g) {
+                  neighbor.g = tempG;
+                  newPath = true;
+                }
+              } else {
                 neighbor.g = tempG;
                 newPath = true;
+                open.push(neighbor);
               }
-            } else {
-              neighbor.g = tempG;
-              newPath = true;
-              open.push(neighbor);
-            }
-            if (newPath) {
-              neighbor.h = this.heuristic(neighbor, this.goal, heuristic);
-              neighbor.f = neighbor.g + neighbor.h;
-              neighbor.parent = current;
+              if (newPath) {
+                neighbor.h = this.heuristic(neighbor, this.goal, heuristic);
+                neighbor.f = neighbor.g + neighbor.h;
+                neighbor.parent = current;
+              }
             }
           }
         }
@@ -203,8 +215,9 @@ export class PathfindingAlgorithmsComponent implements OnInit {
         this.path.push(this.createLine([path[i].j * this.grid_size + this.grid_size/2, path[i].i * this.grid_size + this.grid_size/2], 
                         [path[i+1].j * this.grid_size + this.grid_size/2, path[i+1].i * this.grid_size + this.grid_size/2], line));
       }
-
       this.canvas.renderAll();
+      this.open_nodes = [];
+      this.closed_nodes= [];
     } else {
       console.log('No solution');
       this.inAnimation = false;
@@ -273,18 +286,18 @@ export class PathfindingAlgorithmsComponent implements OnInit {
     if (node.j < this.blocks[0].length-1) {
       neighbors.push(this.blocks[node.i][node.j+1]);
     }
-      if (node.i-1 >= 0 && node.j-1 >= 0) {
-        neighbors.push(this.blocks[node.i-1][node.j-1]);
-      }
-      if (node.i+1 <= this.blocks.length-1 && node.j+1 <= this.blocks[0].length-1) {
-        neighbors.push(this.blocks[node.i+1][node.j+1]);
-      }
-      if (node.i-1 >= 0 && node.j+1 <= this.blocks[0].length-1) {
-        neighbors.push(this.blocks[node.i-1][node.j+1]);
-      }
-      if (node.i+1 <= this.blocks.length-1 && node.j-1 >= 0) {
-        neighbors.push(this.blocks[node.i+1][node.j-1]);
-      }
+    if (node.i-1 >= 0 && node.j-1 >= 0) {
+      neighbors.push(this.blocks[node.i-1][node.j-1]);
+    }
+    if (node.i+1 <= this.blocks.length-1 && node.j+1 <= this.blocks[0].length-1) {
+      neighbors.push(this.blocks[node.i+1][node.j+1]);
+    }
+    if (node.i-1 >= 0 && node.j+1 <= this.blocks[0].length-1) {
+      neighbors.push(this.blocks[node.i-1][node.j+1]);
+    }
+    if (node.i+1 <= this.blocks.length-1 && node.j-1 >= 0) {
+      neighbors.push(this.blocks[node.i+1][node.j-1]);
+    }
     return neighbors;
   }
 

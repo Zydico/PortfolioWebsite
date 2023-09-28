@@ -24,7 +24,7 @@
             <button id="clear-grid-button" type="button" (click)="clearGrid()">Clear Grid</button>
             <button id="search-button" type="button" (click)="startSearch()">Search</button>
             <div id="slider">
-                <input type="range" min="0" max="100" value="0" id="speed" name="speed" (input)="speedChange($event)"><label for="speed">Speed</label>
+                <input type="range" min="0" max="100" value="0" id="speed" name="speed" (input)="speedChange($event)"><label for="speed">Delay</label>
             </div>
             <div id="time">Elapsed Time: {{ elapsedTime.toString() }} seconds</div>
         </div>
